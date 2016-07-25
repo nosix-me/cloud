@@ -2,7 +2,7 @@ package com.nosix.cloud.config;
 
 import com.nosix.cloud.config.service.HelloService;
 import com.nosix.cloud.config.service.HelloServiceImpl;
-import com.nosix.cloud.registry.zookeeper.ZookeeperRegistryConfig;
+import com.nosix.cloud.registry.support.DefaultRegistryConfig;
 import com.nosix.cloud.transport.nifty.NiftyServerConfiguration;
 
 public class ServiceTest {
@@ -32,7 +32,7 @@ public class ServiceTest {
 		RegistryConfig registryConfig = new RegistryConfig();
 		registryConfig.setAddress("zk01:2181");
 		registryConfig.setProtocol("zookeeper");
-		registryConfig.setExtConfig(new ZookeeperRegistryConfig());
+		registryConfig.setConfig(new DefaultRegistryConfig());
 		service.setProtocolConfig(protocolConfig);
 		service.setRegistryConfig(registryConfig);
 		service.service();

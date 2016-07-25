@@ -5,4 +5,5 @@ package com.nosix.cloud.registry.support;
  * nosix.me@gmail.com
  */
 public abstract class AbstractRegistryConfig {
+
 }

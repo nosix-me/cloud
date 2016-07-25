@@ -10,17 +10,18 @@ import com.nosix.cloud.common.extension.SpiScope;
 import com.nosix.cloud.registry.Registry;
 import com.nosix.cloud.registry.support.AbstractRegistryConfig;
 import com.nosix.cloud.registry.support.AbstractRegistryFactory;
+import com.nosix.cloud.registry.support.DefaultRegistryConfig;
 
 @Spi(name="zookeeper", scope = SpiScope.SINGLETON)
 public class ZookeeperRegistryFactory extends AbstractRegistryFactory {
 	
 	@Override
 	protected Registry doCreateRegistry(URL url, AbstractRegistryConfig config) {
-		if (!(config instanceof ZookeeperRegistryConfig)) {
+		if (!(config instanceof DefaultRegistryConfig)) {
 			throw new IllegalArgumentException("ZookeeperRegistryConfig is error"); 
 		}
 		
-		ZookeeperRegistryConfig registryConfig = (ZookeeperRegistryConfig)config;
+		DefaultRegistryConfig registryConfig = (DefaultRegistryConfig)config;
 		
 		Builder builder = CuratorFrameworkFactory.builder()
 				.connectString(url.getParameter("address"))

@@ -3,7 +3,7 @@ package com.nosix.cloud.config;
 import org.apache.thrift.TException;
 
 import com.nosix.cloud.config.service.HelloService;
-import com.nosix.cloud.registry.zookeeper.ZookeeperRegistryConfig;
+import com.nosix.cloud.registry.support.DefaultRegistryConfig;
 import com.nosix.cloud.transport.nifty.NiftyClientConfiguration;
 
 public class ReferenceTest {
@@ -34,7 +34,7 @@ public class ReferenceTest {
 		registryConfig.setAddress("zk01:2181");
 		registryConfig.setId("zookeeper");
 		registryConfig.setProtocol("zookeeper");
-		registryConfig.setExtConfig(new ZookeeperRegistryConfig());
+		registryConfig.setConfig(new DefaultRegistryConfig());
 		referenceConfig.setRegistryConfig(registryConfig);
 		referenceConfig.setProtocolConfig(protocolConfig);
 		HelloService.Iface helloService = referenceConfig.reference();

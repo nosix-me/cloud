@@ -12,7 +12,7 @@ public class RegistryConfig extends AbstractConfig {
 
     private String address;
 
-    private AbstractRegistryConfig extConfig;
+    private AbstractRegistryConfig config;
 
     public String getProtocol() {
         return protocol;
@@ -30,11 +30,12 @@ public class RegistryConfig extends AbstractConfig {
         this.address = address;
     }
 
-    public AbstractRegistryConfig getExtConfig() {
-        return extConfig;
-    }
+	public AbstractRegistryConfig getConfig() {
+		return config;
+	}
 
-    public void setExtConfig(AbstractRegistryConfig extConfig) {
-        this.extConfig = extConfig;
-    }
+	public void setConfig(AbstractRegistryConfig config) {
+		this.config = config;
+	}
+    
 }

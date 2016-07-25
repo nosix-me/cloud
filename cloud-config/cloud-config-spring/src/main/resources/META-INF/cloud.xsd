@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns="http://nosix.me/schema/cloud"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:tool="http://www.springframework.org/schema/tool"
+	targetNamespace="http://nosix.me/schema/cloud">
+	
+	<xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+	<xsd:import namespace="http://www.springframework.org/schema/beans"/>
+	<xsd:import namespace="http://www.springframework.org/schema/tool"/>
+	
+	<xsd:annotation>
+		<xsd:documentation><![CDATA[Namespace support for the cloud services provided by cloud framework. ]]></xsd:documentation>
+	</xsd:annotation>
+	
+	<xsd:complexType name="registryType">
+		<xsd:attribute name="id" type="xsd:ID">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The unique identifier for a bean. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="protocol" type="xsd:string" use="optional" default="zookeeper">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud registry center protocol. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="address" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud registry center address. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="extConfig" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud registry extconfig. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	
+	<xsd:complexType name="protocolType">
+		<xsd:attribute name="id" type="xsd:ID">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The unique identifier for a bean. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="protocol" type="xsd:string" use="optional" default="cloud">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud protocol. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="transport" type="xsd:string" use="optional" default="nifty">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The noho endpointFactory, use default. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="host" type="xsd:string" use="optional" default="0.0.0.0">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud exporter host. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="port" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud exporter port. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="proxy" type="xsd:string" use="optional" default="jdk">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud referer proxy type. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="cluster" type="xsd:string" use="optional" default="default">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud referer cluster type. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="loadbalance" type="xsd:string" use="optional" default="roundrobin">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud referer loadbalance type. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="haStrategy" type="xsd:string" use="optional" default="failover">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud referer ha strategy. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="clientConfig" type="xsd:string" use="optional" >
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud referer client configuration. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="serverConfig" type="xsd:string" use="optional" >
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud exporter sever configuration. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	
+	<xsd:complexType name="abstractInvoker">
+		<xsd:attribute name="id" type="xsd:ID">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The unique identifier for a bean. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="interfaceName" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud service interface class. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="interfaceGroup" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud service group. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="interfaceVersion" type="xsd:string" use="optional" default="1.0.0">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud service version. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="registryConfig" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud service registry config. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="protocolConfig" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The cloud protocol config. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	
+	<xsd:complexType name="serviceType">
+		<xsd:complexContent>
+			<xsd:extension base="abstractInvoker">
+				<xsd:attribute name="weight" type="xsd:integer" use="optional" default="1">
+					<xsd:annotation>
+						<xsd:documentation><![CDATA[ The cloud service weight. ]]></xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="ref" type="xsd:string" use="required">
+					<xsd:annotation>
+						<xsd:documentation><![CDATA[ The cloud service reference. ]]></xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="referenceType">
+		<xsd:complexContent>
+			<xsd:extension base="abstractInvoker">
+				<xsd:attribute name="retry" type="xsd:integer" use="optional" default="3">
+					<xsd:annotation>
+						<xsd:documentation><![CDATA[ The cloud service weight. ]]></xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:element name="protocol" type="protocolType"> 
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[ cloud protocol ]]></xsd:documentation> 
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="reference" type="referenceType"> 
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[ cloud referer ]]></xsd:documentation> 
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="service" type="serviceType"> 
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[ cloud exporter ]]></xsd:documentation> 
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="registry" type="registryType"> 
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[ cloud registry ]]></xsd:documentation> 
+		</xsd:annotation>
+	</xsd:element>
+	
+</xsd:schema>

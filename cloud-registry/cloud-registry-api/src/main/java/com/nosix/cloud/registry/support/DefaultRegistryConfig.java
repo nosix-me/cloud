@@ -1,8 +1,6 @@
-package com.nosix.cloud.registry.zookeeper;
+package com.nosix.cloud.registry.support;
 
-import com.nosix.cloud.registry.support.AbstractRegistryConfig;
-
-public class ZookeeperRegistryConfig extends AbstractRegistryConfig {
+public class DefaultRegistryConfig extends AbstractRegistryConfig {
 	
 	private int connTimeout = 5000;
 	private int connAttemptNum = 3;

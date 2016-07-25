@@ -6,6 +6,7 @@ import com.nosix.cloud.common.URLParam;
 import com.nosix.cloud.common.extension.SpiLoader;
 import com.nosix.cloud.registry.Registry;
 import com.nosix.cloud.registry.RegistryFactory;
+import com.nosix.cloud.registry.support.DefaultRegistryConfig;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +32,7 @@ public abstract class AbstractInvokerConfig<T> extends AbstractConfig {
     protected Registry getRegistry() {
         URL url = getRegistryURL(registryConfig);
         RegistryFactory registryFactory = SpiLoader.getInstance(RegistryFactory.class).getExtension(registryConfig.getProtocol());
-        Registry registry = registryFactory.createRegistry(url, getRegistryConfig().getExtConfig());
+        Registry registry = registryFactory.createRegistry(url, getRegistryConfig().getConfig() == null ? new DefaultRegistryConfig(): getRegistryConfig().getConfig());
         if(registry == null) {
             throw new IllegalArgumentException("AbstractInvokerConfig error: registry create fail");
         }
