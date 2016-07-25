@@ -6,15 +6,15 @@ package com.nosix.cloud.transport.support;
  */
 public abstract class AbstractClientConfiguration {
 
-    private Integer maxActive;
+    private Integer maxActive = 20;
 
-    private Integer maxIdle;
+    private Integer maxIdle = 10;
 
-    private Integer minIdle;
+    private Integer minIdle = 5;
 
-    private Integer idleTime;
+    private Integer idleTime = 1000*60*30;
 
-    private Integer maxWaitMillis;
+    private Integer maxWaitMillis = 1000*5;
 
     public Integer getMaxActive() {
         return maxActive;

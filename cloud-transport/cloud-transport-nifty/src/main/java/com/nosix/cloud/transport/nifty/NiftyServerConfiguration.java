@@ -8,9 +8,9 @@ import com.nosix.cloud.transport.support.AbstractServerConfiguration;
  */
 public class NiftyServerConfiguration extends AbstractServerConfiguration {
 
-    private Integer bossCount;
+    private Integer bossCount = 1;
 
-    private Integer workerCount;
+    private Integer workerCount = Runtime.getRuntime().availableProcessors();
 
     public Integer getBossCount() {
         return this.bossCount;
