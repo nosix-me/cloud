@@ -1,0 +1,2 @@
+com.nosix.cloud.cluster.ha.FailfastHaStrategy
+com.nosix.cloud.cluster.ha.FailoverHaStrategy
