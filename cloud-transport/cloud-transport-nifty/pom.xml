@@ -8,33 +8,14 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>cloud-transport-nifty</artifactId>
-    <properties>
-        <dep.airlift.version>0.84</dep.airlift.version>
-    </properties>
+    <name>${project.artifactId}</name>
+    <packaging>jar</packaging>
     <dependencies>
-        <dependency>
-            <groupId>com.facebook.nifty</groupId>
-            <artifactId>nifty-core</artifactId>
-            <version>0.20.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.facebook.nifty</groupId>
-            <artifactId>nifty-client</artifactId>
-            <version>0.20.0</version>
-        </dependency>
-        <!-- thrift -->
-        <dependency>
-            <groupId>org.apache.thrift</groupId>
-            <artifactId>libthrift</artifactId>
-            <version>0.9.3</version>
-        </dependency>
-        
         <dependency>
             <groupId>com.nosix</groupId>
             <artifactId>cloud-transport-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 </project>

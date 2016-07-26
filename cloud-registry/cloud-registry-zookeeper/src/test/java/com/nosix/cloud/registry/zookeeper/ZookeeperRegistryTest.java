@@ -1,16 +1,16 @@
-package com.nosix.cloud.registry.zookeeper;
-import org.junit.Test;
+//package com.nosix.cloud.registry.zookeeper;
+//import org.junit.Test;
 
-public class ZookeeperRegistryTest {
+//public class ZookeeperRegistryTest {
 	
-//	private URL registryUrl = URL.valueOf("zookeeper://127.0.0.1:0/com.moji.moho.registry.Registry?id=test&address=127.0.0.1:2181");
-//	private URL registerUrl1 = URL.valueOf("cloud://127.0.0.1:8888/com.moji.moho.server.Test?group=test&version=1.0.0");
-//	private URL registerUrl2 = URL.valueOf("cloud://127.0.0.1:8889/com.moji.moho.server.Test?group=test&version=1.0.0");
-//	private URL subscribeUrl = URL.valueOf("cloud://127.0.0.1:0/com.moji.moho.server.Test?group=test&version=1.0.0");
+//	private URL registryUrl = URL.valueOf("zookeeper://127.0.0.1:0/com.nosx.cloud.registry.Registry?id=test&address=127.0.0.1");
+//	private URL registerUrl1 = URL.valueOf("cloud://127.0.0.1:8888/com.nosx.cloud.server.Test?group=test&version=1.0.0");
+//	private URL registerUrl2 = URL.valueOf("cloud://127.0.0.1:8889/com.nosx.cloud.server.Test?group=test&version=1.0.0");
+//	private URL subscribeUrl = URL.valueOf("cloud://127.0.0.1:0/com.nosx.cloud.server.Test?group=test&version=1.0.0");
 	
 	
-	@Test
-	public void testRegister() {
+//	@Test
+//	public void testRegister() {
 //		RegistryFactory factory = SpiLoader.getInstance(RegistryFactory.class).getExtension(registryUrl.getProtocol());
 //		Registry registry = factory.createRegistry(registryUrl, new ZookeeperRegistryConfig());
 //		
@@ -44,5 +44,5 @@ public class ZookeeperRegistryTest {
 //		System.out.println("=======服务注销=========");
 //		registry.unregister(registerUrl1);
 //		registry.unregister(registerUrl2);
-	}
-}
+//	}
+//}

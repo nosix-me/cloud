@@ -1,0 +1,16 @@
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xmlns:cloud="http://nosix.me/schema/cloud"  
+    xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd  
+		http://nosix.me/schema/cloud
+		http://nosix.me/schema/cloud/cloud.xsd">  
+
+	<bean id="helloService" class="com.nosix.cloud.example.service.HelloServiceImpl"></bean>
+	<bean id="serverConfig" class="com.nosix.cloud.transport.nifty.NiftyServerConfiguration"></bean>
+	
+    <cloud:protocol  protocol="cloud"  port="9001" serverConfig="serverConfig"></cloud:protocol>
+    <cloud:registry  protocol="zookeeper" address="zk01:2181,zk02:2181,zk03:2181" ></cloud:registry> 
+    <cloud:service   interfaceName="com.nosix.cloud.example.service.HelloService$Iface" ref="helloService" interfaceGroup="test" ></cloud:service> 
+ </beans>

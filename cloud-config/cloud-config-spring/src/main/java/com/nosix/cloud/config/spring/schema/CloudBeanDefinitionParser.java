@@ -56,11 +56,7 @@ public class CloudBeanDefinitionParser implements BeanDefinitionParser {
 				generateBeanName = element.getAttribute("protocol");
 			}
 			if(generateBeanName == null || generateBeanName.length() == 0) {
-				if(element.getTagName().contains(":") && !element.getTagName().endsWith(":")) {
-					generateBeanName = element.getTagName().substring(element.getTagName().indexOf(":")+1);
-				} else {
-					generateBeanName = element.getAttribute("interfaceClass");
-				}
+				generateBeanName = element.getAttribute("interfaceClass");
 			}
 			if(generateBeanName == null || generateBeanName.length() == 0) {
 				generateBeanName = beanClass.getName();
