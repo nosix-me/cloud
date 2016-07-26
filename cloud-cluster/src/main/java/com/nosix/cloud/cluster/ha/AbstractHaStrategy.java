@@ -16,6 +16,8 @@ public abstract class AbstractHaStrategy<T> implements HaStrategy<T> {
 	
 	public Response getDefaultResponse() {
 		Response response = new DefaultResponse();
+		response.setException(true);
+		response.setValue("no service provider");
 		return response;
 	}
 }

@@ -32,12 +32,10 @@ public class DefaultClusterProxyHandler<T> implements InvocationHandler {
         Request request = new DefaultRequest(group, version, interfaceName, methdName);
         request.setParameters(args);
         request.setRequestId(0l);
-        try {
-            Response response = cluster.invoke(request);
-            return response.getValue();
-        } catch (Exception e) {
-            e.printStackTrace();
+        Response response = cluster.invoke(request);
+        if(response.getException()) {
+            throw new NullPointerException(response.getValue().toString());
         }
-        return null;
+        return response.getValue();
     }
 }
