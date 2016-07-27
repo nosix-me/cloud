@@ -11,7 +11,7 @@
 
     <artifactId>cloud-rpc-api</artifactId>
 	<name>${project.artifactId}</name>
-	<packaging>jar</packaging>
+    <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>com.nosix</groupId>

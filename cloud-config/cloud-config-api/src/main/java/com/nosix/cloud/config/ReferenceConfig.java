@@ -83,7 +83,10 @@ public class ReferenceConfig<T> extends AbstractInvokerConfig<T> {
             paramMap.put("retry", "3");
         }
         return new URL((config.getProtocol() == null ? Constants.SPI_NAME_CLOUD : config.getProtocol()),
-                config.getHost(),config.getPort(), getInterfaceName(), paramMap);
+                Constants.SERVICE_DEFAULT_HOST,
+                Constants.SERVICE_DEFAULT_PORT,
+                getInterfaceName(),
+                paramMap);
     }
 
 

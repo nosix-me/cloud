@@ -52,12 +52,12 @@
 				<xsd:documentation><![CDATA[ The noho endpointFactory, use default. ]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="host" type="xsd:string" use="optional" default="0.0.0.0">
+		<xsd:attribute name="host" type="xsd:string" use="optional" default="127.0.0.1">
 			<xsd:annotation>
 				<xsd:documentation><![CDATA[ The cloud exporter host. ]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="port" type="xsd:string" use="optional">
+		<xsd:attribute name="port" type="xsd:integer" use="optional" default="0">
 			<xsd:annotation>
 				<xsd:documentation><![CDATA[ The cloud exporter port. ]]></xsd:documentation>
 			</xsd:annotation>
@@ -105,7 +105,7 @@
 				<xsd:documentation><![CDATA[ The cloud service interface class. ]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="interfaceGroup" type="xsd:string" use="required">
+		<xsd:attribute name="group" type="xsd:string" use="optional" default="default">
 			<xsd:annotation>
 				<xsd:documentation><![CDATA[ The cloud service group. ]]></xsd:documentation>
 			</xsd:annotation>
