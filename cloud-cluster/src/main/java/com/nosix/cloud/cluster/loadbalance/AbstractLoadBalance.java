@@ -9,30 +9,25 @@ import com.nosix.cloud.rpc.Reference;
 
 public abstract class AbstractLoadBalance<T> implements LoadBalance<T> {
 	private List<Reference<T>> references;
-	
+
 	public void refresh(List<Reference<T>> references) {
-		if (this.references == null) {
-			this.references = new ArrayList<Reference<T>>();
-		} else {
-			this.references.clear();
-		}
-		this.references.addAll(references);
+		this.references = references;
 	}
 	
 	public Reference<T> select() {
-		if (references.size() <= 0) {
+		if (references == null || references.size() <= 0) {
 			return null;
 		}
-		
+
 		List<Reference<T>> list = getAvailableReferences();
 		if (list.size() <= 0) {
 			return null;
 		}
-		
+
 		if (list.size() == 1) {
 			return list.get(0);
 		}
-		
+
 		return doSelect(list);
 	}
 	

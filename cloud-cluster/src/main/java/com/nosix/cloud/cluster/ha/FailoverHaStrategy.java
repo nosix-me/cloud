@@ -12,26 +12,27 @@ public class FailoverHaStrategy<T> extends AbstractHaStrategy<T> {
 	private static final int DEFAULT_RETRY = 3;
 	@Override
 	public Response invoke(Request request, LoadBalance<T> loadBalance) {
-		Reference<T> reference = loadBalance.select();
-		
-		if (reference == null) {
-			return getDefaultResponse();
-		}
-		
-		if (!reference.isAvailable()) {
-			return invoke(request, loadBalance);
-		}
-		
+
 		int retryTotalCount = url.getIntParameter("retry", DEFAULT_RETRY);
 		int retryCount = 0;
 		do {
+			Reference<T> reference = loadBalance.select();
+
+			if (reference == null) {
+				continue;
+			}
+
+			if (!reference.isAvailable()) {
+				continue;
+			}
+
 			Response response = reference.invoke(request);
 			if (!response.getException()) {
 				return response;
 			}
 			retryCount++;
 		} while (retryCount < retryTotalCount);
-		
-		return invoke(request, loadBalance);
+
+		return getDefaultResponse();
 	}
 }
