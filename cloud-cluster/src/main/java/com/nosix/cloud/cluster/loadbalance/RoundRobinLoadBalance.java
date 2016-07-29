@@ -14,7 +14,16 @@ public class RoundRobinLoadBalance<T> extends AbstractLoadBalance<T> {
 
 	@Override
 	protected Reference<T> doSelect(List<Reference<T>> list) {
-		int index =  idx.getAndIncrement() % list.size();
-		return list.get(index);
+		if(list == null || list.size() == 0) {
+			return  null;
+		}
+		int index = idx.incrementAndGet();
+		for(int i = 0; i < list.size(); i++) {
+			Reference<T> ref = list.get((i+index) % list.size());
+			if(ref.isAvailable()) {
+				return ref;
+			}
+		}
+		return  null;
 	}
 }

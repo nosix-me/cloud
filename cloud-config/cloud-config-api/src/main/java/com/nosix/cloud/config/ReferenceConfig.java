@@ -78,9 +78,9 @@ public class ReferenceConfig<T> extends AbstractInvokerConfig<T> {
         paramMap.put(URLParam.transport.getName(), config.getTransport() == null ? URLParam.transport.getValue() : config.getTransport());
         paramMap.put(URLParam.proxy.getName(), config.getProxy() == null ? URLParam.proxy.getValue() : config.getProxy());
         if(retry != null) {
-            paramMap.put("retry", retry.toString());
+            paramMap.put(URLParam.retries.getName(), retry.toString());
         } else {
-            paramMap.put("retry", "3");
+            paramMap.put(URLParam.retries.getName(), URLParam.retries.getValue());
         }
         return new URL((config.getProtocol() == null ? Constants.SPI_NAME_CLOUD : config.getProtocol()),
                 Constants.SERVICE_DEFAULT_HOST,

@@ -11,9 +11,9 @@ import com.nosix.cloud.example.service.HelloService;
  *
  */
 public class Client {
-    public static void main( String[] args ){
-    	@SuppressWarnings("resource")
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application.xml");  
+	public static void main( String[] args ){
+		@SuppressWarnings("resource")
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application.xml");
 		ctx.start();
 		@SuppressWarnings("unchecked")
 		ReferenceConfig<HelloService.Iface> reference = ctx.getBean("helloService", ReferenceConfig.class);
@@ -28,5 +28,5 @@ public class Client {
 			}
 		}
 		System.out.println(System.currentTimeMillis() - stime);
-    }
+	}
 }

@@ -9,10 +9,19 @@ import com.nosix.cloud.rpc.Reference;
 
 @Spi(name = "random", scope = SpiScope.PROTOTYPE)
 public class RandomLoadBalance<T> extends AbstractLoadBalance<T> {
-	private Random random = new Random();
+
 	@Override
 	public Reference<T> doSelect(List<Reference<T>> list) {
-		int index = random.nextInt(list.size());
-		return list.get(index);
+		if(list == null || list.size() == 0) {
+			return null;
+		}
+		int idx = (int) (Math.random() * list.size());
+		for(int i = 0; i < list.size(); i++) {
+			Reference<T> ref = list.get((i+idx) % list.size());
+			if(ref.isAvailable()) {
+				return ref;
+			}
+		}
+		return null;
 	}
 }

@@ -8,7 +8,8 @@ public enum URLParam {
 	proxy("proxy", "jdk"),
 	cluster("cluster", Constants.SPI_NAME_DEFAULT),
 	loadbalance("loadbalance", "failover"),
-	haStrategy("haStrategy", "");
+	haStrategy("haStrategy", "failover"),
+    retries("retry","3");
 
 	private String name;
     private String value;

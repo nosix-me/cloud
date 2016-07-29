@@ -15,11 +15,14 @@ public abstract class AbstractLoadBalance<T> implements LoadBalance<T> {
 	}
 	
 	public Reference<T> select() {
+		List<Reference<T>> references = this.references;
+
 		if (references == null || references.size() <= 0) {
 			return null;
 		}
 
-		List<Reference<T>> list = getAvailableReferences();
+		List<Reference<T>> list = getAvailableReferences(references);
+
 		if (list.size() <= 0) {
 			return null;
 		}
@@ -30,8 +33,8 @@ public abstract class AbstractLoadBalance<T> implements LoadBalance<T> {
 
 		return doSelect(list);
 	}
-	
-	private List<Reference<T>> getAvailableReferences() {
+
+	private List<Reference<T>> getAvailableReferences(List<Reference<T>> references) {
 		List<Reference<T>> availableReferences = new ArrayList<Reference<T>>();
 		for (Reference<T> referer : references) {
 			if (referer.isAvailable()) {
