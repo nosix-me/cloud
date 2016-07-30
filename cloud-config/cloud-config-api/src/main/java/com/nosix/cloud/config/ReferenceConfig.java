@@ -25,6 +25,8 @@ public class ReferenceConfig<T> extends AbstractInvokerConfig<T> {
 
     private Integer retry;
 
+    private Integer timeout;
+
     @SuppressWarnings("unchecked")
 	public T reference() {
         URL referenceUrl = getReferenceURL(getProtocolConfig());
@@ -77,6 +79,7 @@ public class ReferenceConfig<T> extends AbstractInvokerConfig<T> {
         paramMap.put(URLParam.loadbalance.getName(), config.getLoadbalance() == null ? URLParam.loadbalance.getValue() : config.getLoadbalance());
         paramMap.put(URLParam.transport.getName(), config.getTransport() == null ? URLParam.transport.getValue() : config.getTransport());
         paramMap.put(URLParam.proxy.getName(), config.getProxy() == null ? URLParam.proxy.getValue() : config.getProxy());
+        paramMap.put(URLParam.timeout.getName(), getTimeout().toString() == null ? URLParam.timeout.getValue() : getTimeout().toString());
         if(retry != null) {
             paramMap.put(URLParam.retries.getName(), retry.toString());
         } else {
@@ -96,5 +99,13 @@ public class ReferenceConfig<T> extends AbstractInvokerConfig<T> {
 
     public void setRetry(Integer retry) {
         this.retry = retry;
+    }
+
+    public Integer getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(Integer timeout) {
+        this.timeout = timeout;
     }
 }

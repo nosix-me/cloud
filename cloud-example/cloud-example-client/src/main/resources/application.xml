@@ -10,5 +10,5 @@
 	<bean id="clientConfig" class="com.nosix.cloud.transport.nifty.NiftyClientConfiguration"></bean>	
     <cloud:protocol  protocol="cloud" clientConfig="clientConfig" ></cloud:protocol>
     <cloud:registry  protocol="zookeeper" address="zk01:2181,zk02:2181,zk03:2181" ></cloud:registry>
-    <cloud:reference id="helloService" interfaceName="com.nosix.cloud.example.service.HelloService$Iface" group="test" ></cloud:reference>
+    <cloud:reference id="helloService" interfaceName="com.nosix.cloud.example.service.HelloService$Iface" group="test" timeout="2000" ></cloud:reference>
  </beans>

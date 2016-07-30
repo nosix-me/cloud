@@ -1,6 +1,7 @@
 package com.nosix.cloud.transport.nifty;
 
 import com.nosix.cloud.common.URL;
+import com.nosix.cloud.common.URLParam;
 import com.nosix.cloud.common.reflect.ReflectFactory;
 import com.nosix.cloud.common.util.ExceptionUtil;
 import com.nosix.cloud.transport.Request;
@@ -44,6 +45,7 @@ public class NiftyClient extends AbstractClient {
 			Class<TServiceClientFactory<TServiceClient>> fi = (Class<TServiceClientFactory<TServiceClient>>) classLoader.loadClass(url.getPath().replace("$Iface", "") + "$Client$Factory");
             TServiceClientFactory<TServiceClient> clientFactory = fi.newInstance();
             TSocket tsocket = new TSocket(url.getHost(), url.getPort());
+            tsocket.setTimeout(url.getIntParameter(URLParam.timeout.getName(),Integer.parseInt(URLParam.timeout.getValue())));
             transport = new TFramedTransport(tsocket);
             TProtocol protocol = new TBinaryProtocol(transport);
             tServiceClient = clientFactory.getClient(protocol);

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <xsd:schema xmlns="http://nosix.me/schema/cloud"
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-	xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:tool="http://www.springframework.org/schema/tool"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	targetNamespace="http://nosix.me/schema/cloud">
 	
 	<xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
@@ -54,42 +52,42 @@
 		</xsd:attribute>
 		<xsd:attribute name="host" type="xsd:string" use="optional" default="127.0.0.1">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[ The cloud exporter host. ]]></xsd:documentation>
+				<xsd:documentation><![CDATA[ The cloud service host. ]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="port" type="xsd:integer" use="optional" default="0">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[ The cloud exporter port. ]]></xsd:documentation>
+				<xsd:documentation><![CDATA[ The cloud service port. ]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="proxy" type="xsd:string" use="optional" default="jdk">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[ The cloud referer proxy type. ]]></xsd:documentation>
+				<xsd:documentation><![CDATA[ The cloud reference proxy type. ]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="cluster" type="xsd:string" use="optional" default="default">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[ The cloud referer cluster type. ]]></xsd:documentation>
+				<xsd:documentation><![CDATA[ The cloud reference cluster type. ]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="loadbalance" type="xsd:string" use="optional" default="roundrobin">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[ The cloud referer loadbalance type. ]]></xsd:documentation>
+				<xsd:documentation><![CDATA[ The cloud reference loadbalance type. ]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="haStrategy" type="xsd:string" use="optional" default="failover">
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[ The cloud referer ha strategy. ]]></xsd:documentation>
+				<xsd:documentation><![CDATA[ The cloud reference ha strategy. ]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="clientConfig" type="xsd:string" use="optional" >
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[ The cloud referer client configuration. ]]></xsd:documentation>
+				<xsd:documentation><![CDATA[ The cloud reference client configuration. ]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="serverConfig" type="xsd:string" use="optional" >
 			<xsd:annotation>
-				<xsd:documentation><![CDATA[ The cloud exporter sever configuration. ]]></xsd:documentation>
+				<xsd:documentation><![CDATA[ The cloud service sever configuration. ]]></xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>
@@ -152,6 +150,11 @@
 						<xsd:documentation><![CDATA[ The cloud service weight. ]]></xsd:documentation>
 					</xsd:annotation>
 				</xsd:attribute>
+				<xsd:attribute name="timeout" type="xsd:integer" use="optional"  default="2000">
+					<xsd:annotation>
+						<xsd:documentation><![CDATA[ The cloud reference call timeout. ]]></xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -164,13 +167,13 @@
 	
 	<xsd:element name="reference" type="referenceType"> 
 		<xsd:annotation>
-			<xsd:documentation><![CDATA[ cloud referer ]]></xsd:documentation> 
+			<xsd:documentation><![CDATA[ cloud reference ]]></xsd:documentation> 
 		</xsd:annotation>
 	</xsd:element>
 	
 	<xsd:element name="service" type="serviceType"> 
 		<xsd:annotation>
-			<xsd:documentation><![CDATA[ cloud exporter ]]></xsd:documentation> 
+			<xsd:documentation><![CDATA[ cloud service ]]></xsd:documentation> 
 		</xsd:annotation>
 	</xsd:element>
 	

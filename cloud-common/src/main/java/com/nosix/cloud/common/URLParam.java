@@ -9,7 +9,8 @@ public enum URLParam {
 	cluster("cluster", Constants.SPI_NAME_DEFAULT),
 	loadbalance("loadbalance", "failover"),
 	haStrategy("haStrategy", "failover"),
-    retries("retry","3");
+    retries("retry","3"),
+    timeout("timeout","2000");
 
 	private String name;
     private String value;

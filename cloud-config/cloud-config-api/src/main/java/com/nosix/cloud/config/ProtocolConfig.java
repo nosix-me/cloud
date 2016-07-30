@@ -111,5 +111,5 @@ public class ProtocolConfig  extends AbstractConfig{
 	public void setClientConfig(AbstractClientConfiguration clientConfig) {
 		this.clientConfig = clientConfig;
 	}
-	
+
 }
