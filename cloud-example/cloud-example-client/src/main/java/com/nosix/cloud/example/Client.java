@@ -17,7 +17,7 @@ public class Client {
 		ctx.start();
 		@SuppressWarnings("unchecked")
 		ReferenceConfig<HelloService.Iface> reference = ctx.getBean("helloService", ReferenceConfig.class);
-		HelloService.Iface helloService = reference.reference();
+		final HelloService.Iface helloService = reference.reference();
 		long stime = System.currentTimeMillis();
 		for(int i = 0;i < 100000; i++) {
 			try {

@@ -58,9 +58,9 @@ public class ServiceConfig<T> extends AbstractInvokerConfig<T> {
         paramMap.put(URLParam.version.getName(), getVersion() == null ? URLParam.version.getValue() : getVersion());
         paramMap.put(URLParam.transport.getName(), config.getTransport() == null ? URLParam.transport.getValue() : config.getTransport());
         if(weight != null) {
-            paramMap.put("weight", weight.toString());
+            paramMap.put(URLParam.weight.getName(), weight.toString());
         } else {
-            paramMap.put("weight", "1");
+            paramMap.put(URLParam.weight.getName(), URLParam.weight.getValue());
         }
         return new URL((config.getProtocol() == null ? Constants.SPI_NAME_CLOUD : config.getProtocol()),
                 config.getHost(),config.getPort(), getInterfaceName(),paramMap);

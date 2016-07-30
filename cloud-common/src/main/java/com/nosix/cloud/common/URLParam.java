@@ -10,7 +10,8 @@ public enum URLParam {
 	loadbalance("loadbalance", "failover"),
 	haStrategy("haStrategy", "failover"),
     retries("retry","3"),
-    timeout("timeout","2000");
+    timeout("timeout","2000"),
+    weight("weight", "1");
 
 	private String name;
     private String value;
