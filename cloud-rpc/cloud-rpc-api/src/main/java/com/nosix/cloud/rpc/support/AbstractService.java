@@ -3,6 +3,7 @@ package com.nosix.cloud.rpc.support;
 import java.lang.reflect.Method;
 
 import com.nosix.cloud.common.URL;
+import com.nosix.cloud.common.reflect.ReflectFactory;
 import com.nosix.cloud.common.util.ExceptionUtil;
 import com.nosix.cloud.rpc.Service;
 import com.nosix.cloud.transport.Request;
@@ -30,21 +31,7 @@ public abstract class AbstractService<T> extends AbstractInvoker<T> implements S
 			return response;
 		}
 		try{
-			ClassLoader classlodar = Thread.currentThread().getContextClassLoader();
-	    	Class<?> clazz = classlodar.loadClass(request.getInterfaceName()+"$Iface");
-	    	Class<?> [] types = null;
-	    	if(request.getParameters() != null && request.getParameters().length > 0) {
-	    		types = new Class<?>[request.getParameters().length];
-	    		for(int i = 0; i < request.getParameters().length; i++) {
-	    			types[i] = request.getParameters()[i].getClass();
-	    		}
-	    	}
-	    	Method method = null;
-	    	if(types == null) {
-	    		method = clazz.getMethod(request.getMethodName());
-	    	} else {
-	    		method = clazz.getMethod(request.getMethodName(),types);
-	    	}
+			Method method = ReflectFactory.name2Method(request.getInterfaceName(), request.getMethodName());
 	    	if(method == null) {
 	    		response.setException(true);
 	    		response.setValue("no such method:"+request.getMethodName());
