@@ -16,6 +16,4 @@ public interface Invoker<T> {
     boolean isAvailable();
 
     URL getURL();
-
-    Class<T> getInterface();
 }

@@ -4,15 +4,13 @@ import com.nosix.cloud.common.URL;
 import com.nosix.cloud.rpc.Invoker;
 
 public abstract class AbstractInvoker<T> implements Invoker<T> {
-	
-	protected Class<T> clz;
-	
+
 	protected URL url;
 
 	protected volatile boolean init = false;
-	public AbstractInvoker(Class<T> clz, URL url) {
+
+	public AbstractInvoker(URL url) {
 		super();
-		this.clz = clz;
 		this.url = url;
 	}
 
@@ -33,9 +31,7 @@ public abstract class AbstractInvoker<T> implements Invoker<T> {
 		return this.url;
 	}
 
-	public Class<T> getInterface() {
-		return clz;
-	}
+
 
 	protected abstract boolean doInit();
 	

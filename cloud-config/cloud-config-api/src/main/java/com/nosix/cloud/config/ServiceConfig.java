@@ -24,7 +24,7 @@ public class ServiceConfig<T> extends AbstractInvokerConfig<T> {
         final Protocol protocol = SpiLoader.getInstance(Protocol.class).getExtension(serviceUrl.getProtocol());
         protocol.setServerConfiguration(getProtocolConfig().getServerConfig());
         //start service
-        protocol.service(interfaceClass, ref, serviceUrl);
+        protocol.service(ref, serviceUrl);
 
         final Registry registry = getRegistry();
         registry.registry(serviceUrl);

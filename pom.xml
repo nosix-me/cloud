@@ -13,7 +13,7 @@
         <module>cloud-common</module>
         <module>cloud-transport</module>
         <module>cloud-rpc</module>
-    <module>cloud-example</module>
+        <module>cloud-example</module>
         <module>cloud-monitor</module>
         <module>cloud-filter</module>
     </modules>

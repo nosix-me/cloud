@@ -14,12 +14,13 @@ import com.nosix.cloud.rpc.Service;
 public class DefaultProtocol extends AbstractProtocol {
 
 	@Override
-	protected <T> Service<T> doService(Class<T> clz, T obj, URL url) {
-		return new DefaultService<T>(clz, obj, url, serverConfiguration);
+	protected <T> Service<T> doService(T obj, URL url) {
+		return new DefaultService<T>(obj, url, serverConfiguration);
 	}
 
 	@Override
 	protected <T> Reference<T> doReference(Class<T> clz, URL url) {
 		return new DefaultRefernce<T>(clz, url, clientConfiguration);
 	}
+
 }

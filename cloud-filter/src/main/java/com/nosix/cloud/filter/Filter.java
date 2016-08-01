@@ -12,5 +12,5 @@ import com.nosix.cloud.transport.Response;
  */
 public interface Filter {
 
-    Response filter(Reference<?> reference, Request request);
+    Response filter(Invoker<?> invoker, Request request);
 }

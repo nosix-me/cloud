@@ -12,7 +12,7 @@ import com.nosix.cloud.transport.support.DefaultResponse;
 
 public abstract class AbstractService<T> extends AbstractInvoker<T> implements Service<T> {
 
-	public AbstractService(Class<T> clz, URL url) {
-		super(clz, url);
+	public AbstractService(URL url) {
+		super(url);
 	}
 }
