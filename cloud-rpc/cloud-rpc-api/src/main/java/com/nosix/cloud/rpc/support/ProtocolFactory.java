@@ -85,8 +85,8 @@ public class ProtocolFactory {
 			}
 			
 			for (Entry<String, Service<?>> entry : map.entrySet()) {
-				Service<?> exporter = entry.getValue();
-				exporter.destroy();
+				Service<?> service = entry.getValue();
+				service.destroy();
 			}
 			
 			map.clear();

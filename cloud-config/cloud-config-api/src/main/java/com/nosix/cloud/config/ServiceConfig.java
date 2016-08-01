@@ -20,14 +20,30 @@ public class ServiceConfig<T> extends AbstractInvokerConfig<T> {
     private T ref;
 
     public void service() {
-        URL serviceUrl = getServiceUURL(getProtocolConfig());
-        Protocol protocol = SpiLoader.getInstance(Protocol.class).getExtension(serviceUrl.getProtocol());
+        final URL serviceUrl = getServiceUURL(getProtocolConfig());
+        final Protocol protocol = SpiLoader.getInstance(Protocol.class).getExtension(serviceUrl.getProtocol());
         protocol.setServerConfiguration(getProtocolConfig().getServerConfig());
         //start service
         protocol.service(interfaceClass, ref, serviceUrl);
 
-        Registry registry = getRegistry();
+        final Registry registry = getRegistry();
         registry.registry(serviceUrl);
+
+        //优雅停机
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                try {
+                    if(registry != null) {
+                        registry.unRegistry(serviceUrl);
+                    }
+                    Thread.sleep(1000 * 5);
+                    protocol.destory();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
 

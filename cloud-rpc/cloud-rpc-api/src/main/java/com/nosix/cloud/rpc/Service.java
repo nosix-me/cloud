@@ -6,5 +6,4 @@ package com.nosix.cloud.rpc;
  */
 public interface Service<T> extends Invoker<T> {
 
-    void unService();
 }

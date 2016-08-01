@@ -32,8 +32,4 @@ public class DefaultService<T> extends AbstractService<T> {
 		return server.open();
 	}
 
-	@Override
-	public void unService() {
-		server.close();
-	}
 }
