@@ -17,7 +17,5 @@ public interface Invoker<T> {
 
     URL getURL();
 
-    Response invoke(Request request);
-
     Class<T> getInterface();
 }

@@ -5,5 +5,6 @@ package com.nosix.cloud.rpc;
  * nosix.me@gmail.com
  */
 public interface Service<T> extends Invoker<T> {
-    T getProxy();
+
+    void unService();
 }

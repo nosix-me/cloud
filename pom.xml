@@ -14,7 +14,9 @@
         <module>cloud-transport</module>
         <module>cloud-rpc</module>
     <module>cloud-example</module>
-  </modules>
+        <module>cloud-monitor</module>
+        <module>cloud-filter</module>
+    </modules>
     <properties>
         <slf4j_version>1.6.2</slf4j_version>
         <jcl_version>1.1</jcl_version>
@@ -96,6 +98,12 @@
             <artifactId>junit</artifactId>
             <version>4.11</version>
             <scope>test</scope>
+        </dependency>
+        <!-- jfreechart-->
+        <dependency>
+            <groupId>jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.0.13</version>
         </dependency>
     </dependencies>
     <build>

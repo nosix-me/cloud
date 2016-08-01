@@ -5,6 +5,8 @@ import com.nosix.cloud.common.extension.Spi;
 import com.nosix.cloud.registry.Registry;
 import com.nosix.cloud.rpc.Invoker;
 import com.nosix.cloud.rpc.Protocol;
+import com.nosix.cloud.transport.Request;
+import com.nosix.cloud.transport.Response;
 
 import java.util.List;
 
@@ -27,4 +29,6 @@ public interface Cluster<T> extends Invoker<T> {
     void setHaStrategy(HaStrategy<T> haStrategy);
 
     void refresh(List<URL> urlList);
+
+    Response invoke(Request request);
 }

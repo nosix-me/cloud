@@ -14,7 +14,7 @@ public class DefaultService<T> extends AbstractService<T> {
 	private EndpointFactory endpointFactory;
 	
 	public DefaultService(Class<T> clz, T proxy, URL url, AbstractServerConfiguration configuration) {
-		super(clz, proxy, url);
+		super(clz, url);
 		endpointFactory = SpiLoader.getInstance(EndpointFactory.class).getExtension(url.getParameter(URLParam.transport.getName()));
 		server = endpointFactory.createServer(proxy, url, configuration);
 	}
@@ -32,4 +32,8 @@ public class DefaultService<T> extends AbstractService<T> {
 		return server.open();
 	}
 
+	@Override
+	public void unService() {
+		server.close();
+	}
 }
