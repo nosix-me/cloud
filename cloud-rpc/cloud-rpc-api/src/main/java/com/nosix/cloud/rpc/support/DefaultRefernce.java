@@ -1,7 +1,5 @@
 package com.nosix.cloud.rpc.support;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.common.URLParam;
 import com.nosix.cloud.common.extension.SpiLoader;
@@ -10,6 +8,8 @@ import com.nosix.cloud.transport.EndpointFactory;
 import com.nosix.cloud.transport.Request;
 import com.nosix.cloud.transport.Response;
 import com.nosix.cloud.transport.support.AbstractClientConfiguration;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class DefaultRefernce<T> extends AbstractReference<T> {
 	protected AtomicInteger activeRefererCount = new AtomicInteger(0);

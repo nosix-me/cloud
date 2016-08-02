@@ -11,7 +11,4 @@ public interface Reference<T> extends Invoker<T> {
 
 	Integer getActiveCount();
 
-	Response invoke(Request request);
-
-	Class<T> getInterface();
 }

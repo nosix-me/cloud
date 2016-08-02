@@ -1,14 +1,13 @@
 package com.nosix.cloud.rpc.support;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.rpc.Protocol;
 import com.nosix.cloud.rpc.Reference;
 import com.nosix.cloud.rpc.Service;
 import com.nosix.cloud.transport.support.AbstractClientConfiguration;
 import com.nosix.cloud.transport.support.AbstractServerConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * auther:nosix

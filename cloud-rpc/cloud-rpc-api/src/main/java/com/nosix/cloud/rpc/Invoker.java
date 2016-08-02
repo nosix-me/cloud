@@ -8,12 +8,9 @@ import com.nosix.cloud.transport.Response;
  * auther:nosix
  * nosix.me@gmail.com
  */
-public interface Invoker<T> {
-    void init();
+public interface Invoker<T> extends Node {
 
-    void destroy();
+    Response invoke(Request request);
 
-    boolean isAvailable();
-
-    URL getURL();
+    Class<T> getInterface();
 }
