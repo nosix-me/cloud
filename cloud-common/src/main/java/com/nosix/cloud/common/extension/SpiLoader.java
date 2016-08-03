@@ -81,21 +81,15 @@ public class SpiLoader<T> {
         return null;
     }
 
-    public List<T> findExtension(String groupName) {
+    public List<T> getExtensions(String groupName) {
         if (groupName == null) {
             return null;
         }
         List<T> list = new ArrayList<T>();
         for (Entry<String, Class<T>> entry : extensionClasses.entrySet()) {
             Class<T> clz = entry.getValue();
-            if (groupName.equals(getSpiGroupName(clz))) {
-                SpiScope spiScope = getSpiScope(clz);
-                if (spiScope.equals(SpiScope.PROTOTYPE)) {
-                    list.add(initPrototype(clz));
-                } else if (spiScope.equals(SpiScope.SINGLETON)) {
-                    String name = getSpiName(clz);
-                    list.add(initSingleton(name, clz));
-                }
+            if (groupName.equals(getSpiGroup(clz))) {
+                list.add(initSingleton(getSpiGroupName(clz), clz));
             }
         }
 
@@ -261,6 +255,11 @@ public class SpiLoader<T> {
     private String getSpiGroupName(Class<?> clz) {
         SpiGroup group = clz.getAnnotation(SpiGroup.class);
         return group.name();
+    }
+
+    private String getSpiGroup(Class<?> clz) {
+        SpiGroup group = clz.getAnnotation(SpiGroup.class);
+        return group.group();
     }
 
     private T initPrototype(Class<T> clz) {

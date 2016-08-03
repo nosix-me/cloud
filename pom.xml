@@ -15,7 +15,6 @@
         <module>cloud-rpc</module>
         <module>cloud-example</module>
         <module>cloud-monitor</module>
-        <module>cloud-filter</module>
     </modules>
     <properties>
         <slf4j_version>1.6.2</slf4j_version>
@@ -104,6 +103,12 @@
             <groupId>jfree</groupId>
             <artifactId>jfreechart</artifactId>
             <version>1.0.13</version>
+        </dependency>
+        <!--javassist-->
+        <dependency>
+            <groupId>javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.12.1.GA</version>
         </dependency>
     </dependencies>
     <build>

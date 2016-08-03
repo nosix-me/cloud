@@ -1,6 +1,7 @@
 package com.nosix.cloud.cluster.support;
 
 import com.nosix.cloud.cluster.Cluster;
+import com.nosix.cloud.common.RequestIdGenerator;
 import com.nosix.cloud.common.reflect.ReflectFactory;
 import com.nosix.cloud.transport.Request;
 import com.nosix.cloud.transport.Response;
@@ -31,7 +32,7 @@ public class DefaultClusterProxyHandler<T> implements InvocationHandler {
         String methdName = ReflectFactory.method2Name(method);
         Request request = new DefaultRequest(group, version, interfaceName, methdName);
         request.setParameters(args);
-        request.setRequestId(0l);
+        request.setRequestId(RequestIdGenerator.getRequestId());
         Response response = cluster.invoke(request);
         if(response.getException()) {
             throw new NullPointerException(response.getValue().toString());

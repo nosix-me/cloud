@@ -12,6 +12,8 @@ import com.nosix.cloud.transport.Response;
 import com.nosix.cloud.transport.support.AbstractClientConfiguration;
 import com.nosix.cloud.transport.support.AbstractServerConfiguration;
 
+import java.util.List;
+
 
 /**
  * auther:nosix
@@ -39,45 +41,52 @@ public class ProtocolFIlterDecorator implements Protocol {
     }
 
     private <T> Reference<T> buildInvokerChain(final Reference<T> reference, String consumer) {
-        final Filter filter = SpiLoader.getInstance(Filter.class).getExtension("accesslog");
         Reference<T> last = reference;
-        final Reference<T> next = last;
-        last = new Reference<T>() {
-            @Override
-            public Integer getActiveCount() {
-                return reference.getActiveCount();
+        List<Filter> filters = SpiLoader.getInstance(Filter.class).getExtensions(Constants.CONSUMER);
+        if(filters.size()>0) {
+            for(int i = 0; i < filters.size(); i++) {
+                final Filter filter = filters.get(i);
+                final Reference<T> next = last;
+                last = new Reference<T>() {
+                    @Override
+                    public Integer getActiveCount() {
+                        return reference.getActiveCount();
+                    }
+
+                    @Override
+                    public Response invoke(Request request) {
+                        return filter.filter(next,request);
+                    }
+
+                    @Override
+                    public Class<T> getInterface() {
+                        return reference.getInterface();
+                    }
+
+                    @Override
+                    public void init() {
+                        reference.init();
+                    }
+
+                    @Override
+                    public void destroy() {
+                        reference.destroy();
+                    }
+
+                    @Override
+                    public boolean isAvailable() {
+                        return reference.isAvailable();
+                    }
+
+                    @Override
+                    public URL getURL() {
+                        return reference.getURL();
+                    }
+                };
             }
 
-            @Override
-            public Response invoke(Request request) {
-                return filter.filter(next,request);
-            }
+        }
 
-            @Override
-            public Class<T> getInterface() {
-                return reference.getInterface();
-            }
-
-            @Override
-            public void init() {
-                reference.init();
-            }
-
-            @Override
-            public void destroy() {
-                reference.destroy();
-            }
-
-            @Override
-            public boolean isAvailable() {
-                return reference.isAvailable();
-            }
-
-            @Override
-            public URL getURL() {
-                return reference.getURL();
-            }
-        };
         return last;
     }
 
