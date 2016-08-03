@@ -1,9 +1,7 @@
-package com.nosix.cloud.filter;
+package com.nosix.cloud.rpc;
 
 
 import com.nosix.cloud.common.extension.Spi;
-import com.nosix.cloud.rpc.Invoker;
-import com.nosix.cloud.rpc.Reference;
 import com.nosix.cloud.transport.Request;
 import com.nosix.cloud.transport.Response;
 

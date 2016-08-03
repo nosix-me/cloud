@@ -20,4 +20,8 @@ public class Constants {
 
     public static final String  SERVICE_DEFAULT_HOST = "127.0.0.1";
     public static final Integer SERVICE_DEFAULT_PORT = 8666;
+
+    public static final String  CONSUMER = "consumer";
+    public static final String  PROVIDER = "provider";
+
 }

@@ -6,6 +6,7 @@ import com.nosix.cloud.common.URLParam;
 import com.nosix.cloud.common.extension.SpiLoader;
 import com.nosix.cloud.registry.Registry;
 import com.nosix.cloud.rpc.Protocol;
+import com.nosix.cloud.rpc.support.ProtocolFIlterDecorator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,8 +24,9 @@ public class ServiceConfig<T> extends AbstractInvokerConfig<T> {
         final URL serviceUrl = getServiceUURL(getProtocolConfig());
         final Protocol protocol = SpiLoader.getInstance(Protocol.class).getExtension(serviceUrl.getProtocol());
         protocol.setServerConfiguration(getProtocolConfig().getServerConfig());
+        ProtocolFIlterDecorator protocolFIlterDecorator = new ProtocolFIlterDecorator(protocol);
         //start service
-        protocol.service(ref, serviceUrl);
+        protocolFIlterDecorator.service(ref, serviceUrl);
 
         final Registry registry = getRegistry();
         registry.registry(serviceUrl);
