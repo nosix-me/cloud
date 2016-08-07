@@ -7,12 +7,18 @@ import com.nosix.cloud.transport.Response;
 
 public abstract class AbstractReference<T> extends AbstractInvoker<T> implements Reference<T> {
 
+	protected Class<T> clz;
+
 	public AbstractReference(Class<T> clz, URL url) {
-		super(clz, url);
+		super(url);
 	}
 
 	public Response invoke(Request request) {
 		return doInvoke(request);
+	}
+
+	public Class<T> getInterface() {
+		return clz;
 	}
 
 	protected abstract Response doInvoke(Request request);

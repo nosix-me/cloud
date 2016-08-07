@@ -10,10 +10,15 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 public @interface SpiGroup {
+
 	/**
-	 * 分组名称
-	 */
+	 * 名称
+     */
 	String name() default "";
+	/**
+	 * 分组
+	 */
+	String group() default "";
 	
 	/**
 	 * sequence越小，在返回的list中的位置越靠前，尽量使用 0-100以内的数字

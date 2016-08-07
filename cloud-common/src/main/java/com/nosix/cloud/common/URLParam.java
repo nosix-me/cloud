@@ -11,7 +11,8 @@ public enum URLParam {
 	haStrategy("haStrategy", "failover"),
     retries("retry","3"),
     timeout("timeout","2000"),
-    weight("weight", "1");
+    weight("weight", "1"),
+    monitor("monitor", "");
 
 	private String name;
     private String value;

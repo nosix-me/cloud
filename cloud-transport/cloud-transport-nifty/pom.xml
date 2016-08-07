@@ -17,5 +17,10 @@
             <artifactId>cloud-transport-api</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.nosix</groupId>
+            <artifactId>cloud-monitor-simple</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
     </dependencies>
 </project>

@@ -11,6 +11,7 @@ import com.nosix.cloud.common.extension.SpiLoader;
 import com.nosix.cloud.registry.Registry;
 import com.nosix.cloud.rpc.Protocol;
 import com.nosix.cloud.rpc.proxy.ProxyFactory;
+import com.nosix.cloud.rpc.support.ProtocolFIlterDecorator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,13 +34,15 @@ public class ReferenceConfig<T> extends AbstractInvokerConfig<T> {
         Registry registry = getRegistry();
         Protocol protocol = SpiLoader.getInstance(Protocol.class).getExtension(referenceUrl.getProtocol());
         protocol.setClientConfiguration(getProtocolConfig().getClientConfig());
-        
+
+        ProtocolFIlterDecorator protocolFIlterDecorator = new ProtocolFIlterDecorator(protocol);
+
         Cluster<T> cluster = SpiLoader.getInstance(Cluster.class).getExtension(referenceUrl.getParameter(URLParam.cluster.getName()));
         HaStrategy<T> haStrategy = SpiLoader.getInstance(HaStrategy.class).getExtension(referenceUrl.getParameter(URLParam.haStrategy.getName()));
         LoadBalance<T> loadBalance = SpiLoader.getInstance(LoadBalance.class).getExtension(referenceUrl.getParameter(URLParam.loadbalance.getName()));
         cluster.setInterface(interfaceClass);
         cluster.setRegistry(registry);
-        cluster.setProtocol(protocol);
+        cluster.setProtocol(protocolFIlterDecorator);
         cluster.setUrl(referenceUrl);
         cluster.setHaStrategy(haStrategy);
         cluster.setLoadBalance(loadBalance);

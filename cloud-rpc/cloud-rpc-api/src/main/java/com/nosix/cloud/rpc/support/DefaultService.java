@@ -13,8 +13,8 @@ public class DefaultService<T> extends AbstractService<T> {
 	
 	private EndpointFactory endpointFactory;
 	
-	public DefaultService(Class<T> clz, T proxy, URL url, AbstractServerConfiguration configuration) {
-		super(clz, url);
+	public DefaultService(T proxy, URL url, AbstractServerConfiguration configuration) {
+		super( url);
 		endpointFactory = SpiLoader.getInstance(EndpointFactory.class).getExtension(url.getParameter(URLParam.transport.getName()));
 		server = endpointFactory.createServer(proxy, url, configuration);
 	}

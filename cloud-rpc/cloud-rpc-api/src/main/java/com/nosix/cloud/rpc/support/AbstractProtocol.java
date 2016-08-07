@@ -1,14 +1,13 @@
 package com.nosix.cloud.rpc.support;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.rpc.Protocol;
 import com.nosix.cloud.rpc.Reference;
 import com.nosix.cloud.rpc.Service;
 import com.nosix.cloud.transport.support.AbstractClientConfiguration;
 import com.nosix.cloud.transport.support.AbstractServerConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * auther:nosix
@@ -30,7 +29,7 @@ public abstract class AbstractProtocol implements Protocol {
 		this.serverConfiguration = serverConfiguration;
 	}
 
-	public <T> Service<T> service(Class<T> clz, T obj, URL url) {
+	public <T> Service<T> service(T obj, URL url) {
 		if(url == null) {
 			logger.error("service error: url is null");
 			return null;
@@ -41,7 +40,7 @@ public abstract class AbstractProtocol implements Protocol {
 			logger.warn("sevice warning: url = {} already exists", url);
 			return service;
 		}
-		service = doService(clz, obj, url);
+		service = doService(obj, url);
 		service.init();
 		ProtocolFactory.addService(service);
         return service;
@@ -69,6 +68,6 @@ public abstract class AbstractProtocol implements Protocol {
     	ProtocolFactory.destroyAllService();
     }
     
-    protected abstract <T> Service<T> doService(Class<T> clz,T obj, URL url);
+    protected abstract <T> Service<T> doService(T obj, URL url);
     protected abstract <T> Reference<T> doReference(Class<T> clz, URL url);
 }

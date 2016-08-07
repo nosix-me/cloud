@@ -12,7 +12,7 @@ import com.nosix.cloud.transport.support.AbstractServerConfiguration;
 @Spi
 public interface Protocol {
 
-    <T> Service<T> service(Class<T> clz, T obj, URL url);
+    <T> Service<T> service(T obj, URL url);
 
     <T> Reference<T> reference(Class<T> clz, URL url);
 
