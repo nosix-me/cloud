@@ -6,7 +6,7 @@ import com.facebook.nifty.core.NettyServerTransport;
 import com.facebook.nifty.core.ThriftServerDefBuilder;
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.common.URLParam;
-import com.nosix.cloud.monitor.simple.support.DefaultServiceProxy;
+import com.nosix.cloud.monitor.support.DefaultServiceProxy;
 import com.nosix.cloud.transport.support.AbstractServer;
 import com.nosix.cloud.transport.support.AbstractServerConfiguration;
 import org.apache.commons.lang3.StringUtils;
