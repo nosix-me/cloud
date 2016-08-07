@@ -42,7 +42,7 @@ public class ProtocolFIlterDecorator implements Protocol {
 
     private <T> Reference<T> buildInvokerChain(final Reference<T> reference, String consumer) {
         Reference<T> last = reference;
-        List<Filter> filters = SpiLoader.getInstance(Filter.class).getExtensions(Constants.CONSUMER);
+        List<Filter> filters = SpiLoader.getInstance(Filter.class).getExtensions(consumer);
         if(filters.size()>0) {
             for(int i = 0; i < filters.size(); i++) {
                 final Filter filter = filters.get(i);
@@ -84,7 +84,6 @@ public class ProtocolFIlterDecorator implements Protocol {
                     }
                 };
             }
-
         }
 
         return last;

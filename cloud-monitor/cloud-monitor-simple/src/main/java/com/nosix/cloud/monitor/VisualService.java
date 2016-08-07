@@ -4,6 +4,7 @@ package com.nosix.cloud.monitor;
  * auther:nosix
  * nosix.me@gmail.com
  */
-public interface Monitor extends MonitorService {
+public interface VisualService extends MonitorService {
 
+    void draw();
 }

@@ -42,7 +42,7 @@ public class AccessLogFilter implements Filter {
         append(stringBuffer, success);
         append(stringBuffer, invoker.getURL().getHostAndPort());
         append(stringBuffer, consumeTime);
-        logger.info("accesslog:"+stringBuffer.toString());
+        logger.debug("accesslog:"+stringBuffer.toString());
     }
 
     private void append(StringBuffer builder, Object field) {

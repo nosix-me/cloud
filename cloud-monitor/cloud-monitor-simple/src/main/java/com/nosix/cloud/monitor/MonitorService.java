@@ -10,6 +10,10 @@ import java.util.List;
  */
 public interface MonitorService {
 
+    String STATISTICS_DIRECTORY = "/opt/monitor/statistic";
+
+    String CHARS_DIRECTORY = "/opt/monitor/chart";
+
     String INTERFACE = "interface";
 
     String METHOD = "method";
@@ -22,8 +26,10 @@ public interface MonitorService {
 
     String FAILURE = "failure";
 
+    String CONCURRENT = "concurrent";
 
-    void collect(URL statistics);
+    String PROVIDER = "provider";
 
-    List<URL> lookup(URL query);
+    String[] TYPES = { SUCCESS, FAILURE , CONCURRENT};
+
 }

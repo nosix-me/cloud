@@ -18,7 +18,10 @@ import java.util.Map;
 public class ServiceConfig<T> extends AbstractInvokerConfig<T> {
 
     private Integer weight;
+
     private T ref;
+
+    private String monitor;
 
     public void service() {
         final URL serviceUrl = getServiceUURL(getProtocolConfig());
@@ -75,6 +78,7 @@ public class ServiceConfig<T> extends AbstractInvokerConfig<T> {
         paramMap.put(URLParam.group.getName(), getGroup() == null ? URLParam.group.getValue() : getGroup());
         paramMap.put(URLParam.version.getName(), getVersion() == null ? URLParam.version.getValue() : getVersion());
         paramMap.put(URLParam.transport.getName(), config.getTransport() == null ? URLParam.transport.getValue() : config.getTransport());
+        paramMap.put(URLParam.monitor.getName(), getMonitor());
         if(weight != null) {
             paramMap.put(URLParam.weight.getName(), weight.toString());
         } else {
@@ -98,5 +102,13 @@ public class ServiceConfig<T> extends AbstractInvokerConfig<T> {
 
     public void setRef(T ref) {
         this.ref = ref;
+    }
+
+    public String getMonitor() {
+        return monitor;
+    }
+
+    public void setMonitor(String monitor) {
+        this.monitor = monitor;
     }
 }

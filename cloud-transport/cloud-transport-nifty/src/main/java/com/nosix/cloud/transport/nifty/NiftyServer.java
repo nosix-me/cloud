@@ -5,14 +5,16 @@ import com.facebook.nifty.core.NettyServerConfigBuilder;
 import com.facebook.nifty.core.NettyServerTransport;
 import com.facebook.nifty.core.ThriftServerDefBuilder;
 import com.nosix.cloud.common.URL;
+import com.nosix.cloud.common.URLParam;
+import com.nosix.cloud.monitor.support.DefaultServiceProxy;
 import com.nosix.cloud.transport.support.AbstractServer;
 import com.nosix.cloud.transport.support.AbstractServerConfiguration;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.thrift.TProcessor;
 import org.jboss.netty.channel.group.DefaultChannelGroup;
 
 import java.lang.reflect.Constructor;
 import java.util.concurrent.ExecutorService;
-
 import static java.util.concurrent.Executors.newFixedThreadPool;
 
 /**
@@ -50,7 +52,11 @@ public class NiftyServer extends AbstractServer {
                         continue;
                     }
                     Constructor<?> constructor = pclass.getConstructor(clazz);
-                    processor = (TProcessor) constructor.newInstance(ref);
+                    if(StringUtils.isEmpty(url.getParameter(URLParam.monitor.getName()))) {
+                        processor = (TProcessor) constructor.newInstance(ref);
+                    } else {
+                        processor = (TProcessor) constructor.newInstance(new DefaultServiceProxy().wrapper(ref, url));
+                    }
                     break;
                 } catch (Exception e) {
                     e.printStackTrace();

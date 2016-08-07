@@ -33,5 +33,10 @@
             <artifactId>cloud-filter</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.nosix</groupId>
+            <artifactId>cloud-monitor-api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
     </dependencies>
 </project>
