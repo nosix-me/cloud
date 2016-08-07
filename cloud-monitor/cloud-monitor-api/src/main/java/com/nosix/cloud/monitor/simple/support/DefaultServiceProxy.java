@@ -1,8 +1,7 @@
-package com.nosix.cloud.monitor.support;
+package com.nosix.cloud.monitor.simple.support;
 
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.monitor.ServiceProxy;
-import com.nosix.cloud.monitor.support.ServiceProxyHandler;
 
 import java.lang.reflect.Proxy;
 

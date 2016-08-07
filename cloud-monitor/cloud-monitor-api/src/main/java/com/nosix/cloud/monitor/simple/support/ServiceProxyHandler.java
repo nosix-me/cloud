@@ -1,4 +1,4 @@
-package com.nosix.cloud.monitor.support;
+package com.nosix.cloud.monitor.simple.support;
 
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.common.URLParam;
@@ -25,7 +25,7 @@ public class ServiceProxyHandler implements InvocationHandler {
     public ServiceProxyHandler(Object service, URL url) {
         this.service = service;
         this.url = url;
-        MonitorFactory monitorFactory = SpiLoader.getInstance(MonitorFactory.class).getExtension(URLParam.monitor.getValue());
+        MonitorFactory monitorFactory = SpiLoader.getInstance(MonitorFactory.class).getExtension(url.getParameter(URLParam.monitor.getName()));
         monitor = monitorFactory.getMonitor(url);
         monitor.start();
     }
@@ -38,7 +38,6 @@ public class ServiceProxyHandler implements InvocationHandler {
         try {
             long etime = System.currentTimeMillis();
             result = method.invoke(this.service, args);
-            //deal with monitor normal;
             int concurrent = monitor.getConcurrent(url).get();
             logger.debug("invoke succeed, time:{},{}", etime - stime, url.getServiceUri());
             monitor.collect(this.url, method.getName(), concurrent, etime - stime, false);
@@ -46,7 +45,6 @@ public class ServiceProxyHandler implements InvocationHandler {
             long etime = System.currentTimeMillis() - stime;
             int concurrent = monitor.getConcurrent(url).get();
             logger.error("service proxy invoke error:{}", ExceptionUtil.outException(e));
-            //deal with monitor error
             monitor.collect(this.url, method.getName(), concurrent, etime - stime, true);
         } finally {
             this.monitor.getConcurrent(url).decrementAndGet();

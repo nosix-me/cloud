@@ -12,6 +12,7 @@
     <artifactId>cloud-monitor</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>cloud-monitor-api</module>
         <module>cloud-monitor-simple</module>
     </modules>
 

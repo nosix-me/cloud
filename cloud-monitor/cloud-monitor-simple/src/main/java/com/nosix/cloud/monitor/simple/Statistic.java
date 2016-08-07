@@ -1,4 +1,4 @@
-package com.nosix.cloud.monitor;
+package com.nosix.cloud.monitor.simple;
 
 /**
  * auther:nosix

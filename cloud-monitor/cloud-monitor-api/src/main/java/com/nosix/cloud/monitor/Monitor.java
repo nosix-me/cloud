@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * auther:nosix
  * nosix.me@gmail.com
  */
-public interface Monitor extends MonitorService {
+public interface Monitor {
 
     void start();
 

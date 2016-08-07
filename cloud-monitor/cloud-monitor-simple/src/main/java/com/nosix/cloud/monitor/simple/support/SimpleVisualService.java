@@ -1,11 +1,11 @@
-package com.nosix.cloud.monitor.support;
+package com.nosix.cloud.monitor.simple.support;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
 import com.nosix.cloud.common.Constants;
-import com.nosix.cloud.monitor.VisualService;
+import com.nosix.cloud.monitor.simple.VisualService;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.DateAxis;

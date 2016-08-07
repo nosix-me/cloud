@@ -1,8 +1,8 @@
-package com.nosix.cloud.monitor.support;
+package com.nosix.cloud.monitor.simple.support;
 
 import com.nosix.cloud.common.URL;
-import com.nosix.cloud.monitor.Monitor;
 import com.nosix.cloud.monitor.MonitorFactory;
+import com.nosix.cloud.monitor.Monitor;
 
 import java.util.HashMap;
 import java.util.Map;

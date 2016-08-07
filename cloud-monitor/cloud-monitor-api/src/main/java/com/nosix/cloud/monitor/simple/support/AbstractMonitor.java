@@ -1,4 +1,4 @@
-package com.nosix.cloud.monitor.support;
+package com.nosix.cloud.monitor.simple.support;
 
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.monitor.Monitor;

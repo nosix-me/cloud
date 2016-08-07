@@ -1,14 +1,10 @@
-package com.nosix.cloud.monitor;
-
-import com.nosix.cloud.common.URL;
-
-import java.util.List;
+package com.nosix.cloud.monitor.simple;
 
 /**
  * auther:nosix
  * nosix.me@gmail.com
  */
-public interface MonitorService {
+public interface SimpleService {
 
     String STATISTICS_DIRECTORY = "/opt/monitor/statistic";
 
@@ -31,5 +27,4 @@ public interface MonitorService {
     String PROVIDER = "provider";
 
     String[] TYPES = { SUCCESS, FAILURE , CONCURRENT};
-
 }

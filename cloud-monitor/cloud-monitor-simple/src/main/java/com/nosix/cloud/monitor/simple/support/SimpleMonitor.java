@@ -1,11 +1,12 @@
-package com.nosix.cloud.monitor.support;
+package com.nosix.cloud.monitor.simple.support;
 
 import java.io.File;
 
 import com.nosix.cloud.common.Constants;
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.common.URLParam;
-import com.nosix.cloud.monitor.Statistic;
+import com.nosix.cloud.monitor.simple.SimpleService;
+import com.nosix.cloud.monitor.simple.Statistic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +21,7 @@ import java.util.concurrent.*;
  * auther:nosix
  * nosix.me@gmail.com
  */
-public class SimpleMonitor extends AbstractMonitor {
+public class SimpleMonitor  extends AbstractMonitor implements SimpleService {
 
     private static final Logger logger = LoggerFactory.getLogger(SimpleMonitor.class);
     private static final SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyMMdd");
