@@ -7,6 +7,7 @@ import com.nosix.cloud.common.URL;
 import com.nosix.cloud.common.URLParam;
 import com.nosix.cloud.monitor.simple.SimpleService;
 import com.nosix.cloud.monitor.simple.Statistic;
+import com.nosix.cloud.monitor.support.AbstractMonitor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
