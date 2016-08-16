@@ -13,12 +13,12 @@ import com.nosix.cloud.transport.support.AbstractServerConfiguration;
 @Spi(scope = SpiScope.SINGLETON)
 public interface EndpointFactory {
 
-	public Server createServer(Object ref, URL url, AbstractServerConfiguration configuration);
+	Server createServer(Object ref, URL url, AbstractServerConfiguration configuration);
 	
-	public Client createClient(URL url, AbstractClientConfiguration configuration);
+	Client createClient(URL url, AbstractClientConfiguration configuration);
 	
-	public void destroyServer(URL url);
+	void destroyServer(URL url);
 	
-	public void destoryClient(URL url);
+	void destoryClient(URL url);
 	
 }

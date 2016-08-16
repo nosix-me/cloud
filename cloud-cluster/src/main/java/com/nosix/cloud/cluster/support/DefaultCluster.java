@@ -14,6 +14,7 @@ import com.nosix.cloud.transport.Request;
 import com.nosix.cloud.transport.Response;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -104,10 +105,18 @@ public class DefaultCluster<T> implements Cluster<T> {
             return;
         }
 
-        oldReferenceList.removeAll(referenceList);
+        for(Reference<T> item:referenceList) {
+            Iterator<Reference<T>> oldIt = oldReferenceList.iterator();
+            while (oldIt.hasNext()) {
+                if(item.getURL().toString().equals(oldIt.next().getURL().toString())) {
+                    oldIt.remove();
+                }
+            }
+        }
         for(Reference<T> reference : oldReferenceList) {
             ProtocolFactory.removeReference(reference);
         }
+        oldReferenceList = referenceList;
     }
 
 	public LoadBalance<?> getLoadBalance() {

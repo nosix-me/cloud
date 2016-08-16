@@ -28,6 +28,15 @@ public class ReferenceConfig<T> extends AbstractInvokerConfig<T> {
 
     private Integer timeout;
 
+    private Cluster<T> cluster;
+
+    public T getRef () {
+        if(ref == null) {
+            ref = reference();
+        }
+        return ref;
+    }
+
     @SuppressWarnings("unchecked")
 	public T reference() {
         URL referenceUrl = getReferenceURL(getProtocolConfig());
@@ -50,6 +59,12 @@ public class ReferenceConfig<T> extends AbstractInvokerConfig<T> {
         ProxyFactory proxyFactory = SpiLoader.getInstance(ProxyFactory.class).getExtension(referenceUrl.getParameter(URLParam.proxy.getName()));
         ref = proxyFactory.getProxy(interfaceClass, new DefaultClusterProxyHandler<T>(interfaceClass, cluster));
         return ref;
+    }
+
+    public void unReference() {
+        if(cluster != null) {
+            cluster.destroy();
+        }
     }
 
     private URL getReferenceURL(ProtocolConfig config) {

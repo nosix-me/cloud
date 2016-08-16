@@ -14,9 +14,6 @@ public class Server {
 		@SuppressWarnings("resource")
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application.xml");  
 		ctx.start();
-		@SuppressWarnings("unchecked")
-		ServiceConfig<HelloService.Iface> service = ctx.getBean("service", ServiceConfig.class);
-		service.service();
 		while(true) {
 			try {
 				Thread.sleep(1000*60);

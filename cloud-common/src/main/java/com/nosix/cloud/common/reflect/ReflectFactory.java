@@ -220,6 +220,7 @@ public class ReflectFactory {
 				if (sb != null && sb.length() > 0) {
 					result.add(sb.toString());
 					sb = new StringBuilder();
+					continue;
 				}
 			}
 			

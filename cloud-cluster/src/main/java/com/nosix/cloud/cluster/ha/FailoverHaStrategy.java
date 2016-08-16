@@ -19,6 +19,7 @@ public class FailoverHaStrategy<T> extends AbstractHaStrategy<T> {
 			Reference<T> reference = loadBalance.select();
 
 			if (reference == null) {
+				retryCount ++;
 				continue;
 			}
 
