@@ -16,9 +16,7 @@ public class ThreadClient {
         @SuppressWarnings("resource")
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application.xml");
         ctx.start();
-        @SuppressWarnings("unchecked")
-        ReferenceConfig<HelloService.Iface> reference = ctx.getBean("helloService", ReferenceConfig.class);
-        final HelloService.Iface helloService = reference.reference();
+        final HelloService.Iface helloService = ctx.getBean("helloService", HelloService.Iface.class);
         for(int j = 0;j < 10;j ++) {
             Thread thread = new Thread(new Runnable() {
                 @Override

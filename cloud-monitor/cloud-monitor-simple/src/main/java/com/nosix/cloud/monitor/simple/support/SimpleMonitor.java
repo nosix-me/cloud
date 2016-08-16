@@ -60,7 +60,7 @@ public class SimpleMonitor  extends AbstractMonitor implements SimpleService {
                     logger.error("Unexpected error occur at draw stat chart, cause: " + t.getMessage(), t);
                 }
             }
-        }, 1, 30, TimeUnit.SECONDS);
+        }, 1, 300, TimeUnit.SECONDS);
     }
 
 

@@ -34,13 +34,7 @@ public abstract class AbstractProtocol implements Protocol {
 			logger.error("service error: url is null");
 			return null;
 		}
-		@SuppressWarnings("unchecked")
-		Service<T> service = (Service<T>) ProtocolFactory.getService(url);
-		if(service != null) {
-			logger.warn("sevice warning: url = {} already exists", url);
-			return service;
-		}
-		service = doService(obj, url);
+		Service<T> service = doService(obj, url);
 		service.init();
 		ProtocolFactory.addService(service);
         return service;

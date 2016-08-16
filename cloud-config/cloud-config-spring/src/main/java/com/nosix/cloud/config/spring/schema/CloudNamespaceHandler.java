@@ -12,8 +12,8 @@ public class CloudNamespaceHandler extends NamespaceHandlerSupport {
 	public void init() {
 		registerBeanDefinitionParser("protocol", new CloudBeanDefinitionParser(ProtocolConfig.class, true));
 		registerBeanDefinitionParser("registry", new CloudBeanDefinitionParser(RegistryConfig.class, true));
-		registerBeanDefinitionParser("reference", new CloudBeanDefinitionParser(ReferenceConfig.class, true));
-		registerBeanDefinitionParser("service", new CloudBeanDefinitionParser(ServiceConfig.class, true));
+		registerBeanDefinitionParser("reference", new CloudBeanDefinitionParser(ReferenceConfigBean.class, true));
+		registerBeanDefinitionParser("service", new CloudBeanDefinitionParser(ServiceConfigBean.class, true));
 	}
 
 }

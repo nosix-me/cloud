@@ -35,7 +35,9 @@ public abstract class AbstactClientPool extends AbstractClient implements Pooled
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            pool.returnObject(client);
+            if(pool != null) {
+                pool.returnObject(client);
+            }
         }
         return null;
     }

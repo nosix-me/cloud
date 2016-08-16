@@ -16,8 +16,7 @@ public class Client {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application.xml");
 		ctx.start();
 		@SuppressWarnings("unchecked")
-		ReferenceConfig<HelloService.Iface> reference = ctx.getBean("helloService", ReferenceConfig.class);
-		final HelloService.Iface helloService = reference.reference();
+		HelloService.Iface helloService = ctx.getBean("helloService", HelloService.Iface.class);
 		long stime = System.currentTimeMillis();
 		for(int i = 0;i < 100000; i++) {
 			try {

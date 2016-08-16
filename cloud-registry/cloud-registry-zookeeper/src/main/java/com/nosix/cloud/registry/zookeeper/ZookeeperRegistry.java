@@ -38,6 +38,7 @@ public class ZookeeperRegistry extends AbstractRegistry {
 	public void doRegistry(URL url) {
 		try {
 			serverLock.lock();
+			ZkUtils.delete(zkClient, ZkUtils.toRegisterPath(url));
 			ZkUtils.createNode(zkClient, ZkUtils.toRegisterPath(url));
 		} catch (Exception e) {
 			e.printStackTrace();

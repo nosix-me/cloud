@@ -102,4 +102,11 @@ public abstract class AbstractInvokerConfig<T> extends AbstractConfig {
     public void setProtocolConfig(ProtocolConfig protocolConfig) {
         this.protocolConfig = protocolConfig;
     }
+
+    public Class<T> getInterfaceClass() {
+        return interfaceClass;
+    }
+    public void setInterfaceClass(Class<T> interfaceClass) {
+        this.interfaceClass = interfaceClass;
+    }
 }
