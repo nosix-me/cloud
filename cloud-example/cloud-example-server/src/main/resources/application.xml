@@ -10,7 +10,7 @@
 	<bean id="helloService" class="com.nosix.cloud.example.service.HelloServiceImpl"></bean>
 	<bean id="serverConfig" class="com.nosix.cloud.transport.nifty.NiftyServerConfiguration"></bean>
 	
-    <cloud:protocol  protocol="cloud" host="127.0.0.1" port="9002" serverConfig="serverConfig"></cloud:protocol>
+    <cloud:protocol  protocol="cloud" port="9002" serverConfig="serverConfig"></cloud:protocol>
     <cloud:registry  protocol="zookeeper" address="zk01:2181,zk02:2181,zk03:2181" ></cloud:registry>
     <cloud:service id="service"  interfaceName="com.nosix.cloud.example.service.HelloService$Iface" ref="helloService" group="test" monitor="simple" ></cloud:service>
  </beans>

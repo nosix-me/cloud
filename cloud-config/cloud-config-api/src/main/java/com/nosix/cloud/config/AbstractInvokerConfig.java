@@ -4,9 +4,11 @@ import com.nosix.cloud.common.Constants;
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.common.URLParam;
 import com.nosix.cloud.common.extension.SpiLoader;
+import com.nosix.cloud.common.util.NetUtils;
 import com.nosix.cloud.registry.Registry;
 import com.nosix.cloud.registry.RegistryFactory;
 import com.nosix.cloud.registry.support.DefaultRegistryConfig;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -100,6 +102,11 @@ public abstract class AbstractInvokerConfig<T> extends AbstractConfig {
     }
 
     public void setProtocolConfig(ProtocolConfig protocolConfig) {
+        if(protocolConfig != null) {
+            if(StringUtils.isEmpty(protocolConfig.getHost())) {
+                protocolConfig.setHost(NetUtils.getLocalAddress().getHostAddress());
+            }
+        }
         this.protocolConfig = protocolConfig;
     }
 

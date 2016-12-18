@@ -25,7 +25,7 @@ public class ServiceConfig<T> extends AbstractInvokerConfig<T> {
     private String monitor;
 
     public void service() {
-        final URL serviceUrl = getServiceUURL(getProtocolConfig());
+        final URL serviceUrl = getServiceURL(getProtocolConfig());
         final Protocol protocol = SpiLoader.getInstance(Protocol.class).getExtension(serviceUrl.getProtocol());
         protocol.setServerConfiguration(getProtocolConfig().getServerConfig());
         ProtocolFIlterDecorator protocolFIlterDecorator = new ProtocolFIlterDecorator(protocol);
@@ -53,7 +53,7 @@ public class ServiceConfig<T> extends AbstractInvokerConfig<T> {
     }
 
     public void unService() {
-        URL serviceUrl = getServiceUURL(getProtocolConfig());
+        URL serviceUrl = getServiceURL(getProtocolConfig());
         Registry registry = getRegistry();
         registry.unRegistry(serviceUrl);
         try {
@@ -65,7 +65,7 @@ public class ServiceConfig<T> extends AbstractInvokerConfig<T> {
     }
 
 
-    private URL getServiceUURL(ProtocolConfig config) {
+    private URL getServiceURL(ProtocolConfig config) {
         if(config == null) {
             throw new IllegalArgumentException("ServiceConfig error: protocol config is null");
         }
