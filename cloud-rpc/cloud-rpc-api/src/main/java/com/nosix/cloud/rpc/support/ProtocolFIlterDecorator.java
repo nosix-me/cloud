@@ -48,10 +48,6 @@ public class ProtocolFIlterDecorator implements Protocol {
                 final Filter filter = filters.get(i);
                 final Reference<T> next = last;
                 last = new Reference<T>() {
-                    @Override
-                    public Integer getActiveCount() {
-                        return reference.getActiveCount();
-                    }
 
                     @Override
                     public Response invoke(Request request) {

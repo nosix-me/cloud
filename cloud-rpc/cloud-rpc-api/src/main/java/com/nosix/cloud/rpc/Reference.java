@@ -9,6 +9,4 @@ import com.nosix.cloud.transport.Response;
  */
 public interface Reference<T> extends Invoker<T> {
 
-	Integer getActiveCount();
-
 }

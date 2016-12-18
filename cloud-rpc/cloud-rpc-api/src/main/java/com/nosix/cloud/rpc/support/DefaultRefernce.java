@@ -53,9 +53,4 @@ public class DefaultRefernce<T> extends AbstractReference<T> {
 	protected void decrActiveCount() {
 	    activeRefererCount.decrementAndGet();
 	}
-
-	@Override
-	public Integer getActiveCount() {
-		return activeRefererCount.intValue();
-	}
 }

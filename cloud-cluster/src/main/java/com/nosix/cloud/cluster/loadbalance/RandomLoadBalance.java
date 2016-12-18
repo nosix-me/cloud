@@ -1,6 +1,5 @@
 package com.nosix.cloud.cluster.loadbalance;
 
-import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
