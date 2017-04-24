@@ -6,13 +6,13 @@ import org.apache.curator.retry.RetryNTimes;
 
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.common.extension.Spi;
-import com.nosix.cloud.common.extension.SpiScope;
+import com.nosix.cloud.common.extension.Scope;
 import com.nosix.cloud.registry.Registry;
 import com.nosix.cloud.registry.support.AbstractRegistryConfig;
 import com.nosix.cloud.registry.support.AbstractRegistryFactory;
 import com.nosix.cloud.registry.support.DefaultRegistryConfig;
 
-@Spi(name="zookeeper", scope = SpiScope.SINGLETON)
+@Spi(name="zookeeper", scope = Scope.SINGLETON)
 public class ZookeeperRegistryFactory extends AbstractRegistryFactory {
 	
 	@Override

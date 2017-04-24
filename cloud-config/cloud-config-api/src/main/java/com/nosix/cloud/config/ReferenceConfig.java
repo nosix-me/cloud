@@ -7,7 +7,7 @@ import com.nosix.cloud.cluster.support.DefaultClusterProxyHandler;
 import com.nosix.cloud.common.Constants;
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.common.URLParam;
-import com.nosix.cloud.common.extension.SpiLoader;
+import com.nosix.cloud.common.extension.ExtentionLoader;
 import com.nosix.cloud.registry.Registry;
 import com.nosix.cloud.rpc.Protocol;
 import com.nosix.cloud.rpc.proxy.ProxyFactory;
@@ -41,14 +41,14 @@ public class ReferenceConfig<T> extends AbstractInvokerConfig<T> {
 	public T reference() {
         URL referenceUrl = getReferenceURL(getProtocolConfig());
         Registry registry = getRegistry();
-        Protocol protocol = SpiLoader.getInstance(Protocol.class).getExtension(referenceUrl.getProtocol());
+        Protocol protocol = ExtentionLoader.getExtensionLoader(Protocol.class).getExtension(referenceUrl.getProtocol());
         protocol.setClientConfiguration(getProtocolConfig().getClientConfig());
 
         ProtocolFIlterDecorator protocolFIlterDecorator = new ProtocolFIlterDecorator(protocol);
 
-        Cluster<T> cluster = SpiLoader.getInstance(Cluster.class).getExtension(referenceUrl.getParameter(URLParam.cluster.getName()));
-        HaStrategy<T> haStrategy = SpiLoader.getInstance(HaStrategy.class).getExtension(referenceUrl.getParameter(URLParam.haStrategy.getName()));
-        LoadBalance<T> loadBalance = SpiLoader.getInstance(LoadBalance.class).getExtension(referenceUrl.getParameter(URLParam.loadbalance.getName()));
+        Cluster<T> cluster = ExtentionLoader.getExtensionLoader(Cluster.class).getExtension(referenceUrl.getParameter(URLParam.cluster.getName()));
+        HaStrategy<T> haStrategy = ExtentionLoader.getExtensionLoader(HaStrategy.class).getExtension(referenceUrl.getParameter(URLParam.haStrategy.getName()));
+        LoadBalance<T> loadBalance = ExtentionLoader.getExtensionLoader(LoadBalance.class).getExtension(referenceUrl.getParameter(URLParam.loadbalance.getName()));
         cluster.setInterface(interfaceClass);
         cluster.setRegistry(registry);
         cluster.setProtocol(protocolFIlterDecorator);
@@ -56,7 +56,7 @@ public class ReferenceConfig<T> extends AbstractInvokerConfig<T> {
         cluster.setHaStrategy(haStrategy);
         cluster.setLoadBalance(loadBalance);
         cluster.init();
-        ProxyFactory proxyFactory = SpiLoader.getInstance(ProxyFactory.class).getExtension(referenceUrl.getParameter(URLParam.proxy.getName()));
+        ProxyFactory proxyFactory = ExtentionLoader.getExtensionLoader(ProxyFactory.class).getExtension(referenceUrl.getParameter(URLParam.proxy.getName()));
         ref = proxyFactory.getProxy(interfaceClass, new DefaultClusterProxyHandler<T>(interfaceClass, cluster));
         return ref;
     }

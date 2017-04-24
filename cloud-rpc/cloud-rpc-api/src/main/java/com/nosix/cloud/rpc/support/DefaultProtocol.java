@@ -2,7 +2,7 @@ package com.nosix.cloud.rpc.support;
 
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.common.extension.Spi;
-import com.nosix.cloud.common.extension.SpiScope;
+import com.nosix.cloud.common.extension.Scope;
 import com.nosix.cloud.rpc.Reference;
 import com.nosix.cloud.rpc.Service;
 
@@ -10,7 +10,7 @@ import com.nosix.cloud.rpc.Service;
  * auther:nosix
  * nosix.me@gmail.com
  */
-@Spi(name = "cloud", scope = SpiScope.PROTOTYPE)
+@Spi(name = "cloud", scope = Scope.PROTOTYPE)
 public class DefaultProtocol extends AbstractProtocol {
 
 	@Override

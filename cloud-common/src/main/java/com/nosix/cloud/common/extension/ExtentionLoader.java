@@ -17,9 +17,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 
-public class SpiLoader<T> {
+public class ExtentionLoader<T> {
 
-    private  static ConcurrentHashMap<Class<?>, SpiLoader<?>> spiloders = new ConcurrentHashMap<Class<?>, SpiLoader<?>>();
+    private  static ConcurrentHashMap<Class<?>, ExtentionLoader<?>> extentionloders = new ConcurrentHashMap<Class<?>, ExtentionLoader<?>>();
     private static final String PREFIX = "META-INF/services/";
     private static final String DEFAULT_CHARACTER = "utf-8";
 
@@ -32,32 +32,32 @@ public class SpiLoader<T> {
     private ClassLoader classLoader;
 
 
-    private SpiLoader(Class<T> type) {
+    private ExtentionLoader(Class<T> type) {
         this(type, Thread.currentThread().getContextClassLoader());
     }
 
-    private  SpiLoader(Class<T> type, ClassLoader classLoader) {
+    private ExtentionLoader(Class<T> type, ClassLoader classLoader) {
         this.type = type;
         this.classLoader = classLoader;
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> SpiLoader<T> getExtensionLoader(Class<T> type) {
+    public static <T> ExtentionLoader<T> getExtensionLoader(Class<T> type) {
         checkInterface(type);
-        SpiLoader<T> loader = (SpiLoader<T>) spiloders.get(type);
+        ExtentionLoader<T> loader = (ExtentionLoader<T>) extentionloders.get(type);
         if(loader == null) {
-            loader = initSpiLoader(type);
+            loader = initExtentionLoader(type);
         }
         return loader;
     }
 
     @SuppressWarnings("unchecked")
-    private static synchronized <T> SpiLoader<T> initSpiLoader(Class<T> type) {
-        SpiLoader<T> instance = (SpiLoader<T>) spiloders.get(type);
+    private static synchronized <T> ExtentionLoader<T> initExtentionLoader(Class<T> type) {
+        ExtentionLoader<T> instance = (ExtentionLoader<T>) extentionloders.get(type);
         if(instance == null) {
-            instance = new SpiLoader<T>(type);
-            spiloders.putIfAbsent(type, instance);
-            instance = (SpiLoader<T>) spiloders.get(type);
+            instance = new ExtentionLoader<T>(type);
+            extentionloders.putIfAbsent(type, instance);
+            instance = (ExtentionLoader<T>) extentionloders.get(type);
         }
         return instance;
     }
@@ -99,32 +99,10 @@ public class SpiLoader<T> {
             }
         } catch (Exception e) {
             throw new RuntimeException(
-                    "SpiLoader loadExtensionClasses error, prefix: " + prefix + " type: " + type.getClass(), e);
+                    "ExtentionLoader loadExtensionClasses error, prefix: " + prefix + " type: " + type.getClass(), e);
         }
         return loadClass(type, classNames);
     }
-
-
-//    @SuppressWarnings("unchecked")
-//    public static <T> SpiLoader<T> getInstance(Class<T> type) {
-//        SpiLoader<T> instance = (SpiLoader<T>) spiloders.get(type);
-//        if(instance == null) {
-//            instance = initSpiLoaderInstance(type);
-//        }
-//        return instance;
-//    }
-//
-//    @SuppressWarnings("unchecked")
-//    private static<T> SpiLoader<T> initSpiLoaderInstance(Class<T> type) {
-//        SpiLoader<T> instance = (SpiLoader<T>) spiloders.get(type);
-//        if(instance == null) {
-//            instance = new SpiLoader<T>(type);
-//            instance.init();
-//            spiloders.putIfAbsent(type, instance);
-//            instance = (SpiLoader<T>) spiloders.get(type);
-//        }
-//        return instance;
-//    }
 
     public T getExtension(String name) {
         checkInit();

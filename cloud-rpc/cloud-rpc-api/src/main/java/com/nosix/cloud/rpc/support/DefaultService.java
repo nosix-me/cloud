@@ -2,7 +2,7 @@ package com.nosix.cloud.rpc.support;
 
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.common.URLParam;
-import com.nosix.cloud.common.extension.SpiLoader;
+import com.nosix.cloud.common.extension.ExtentionLoader;
 import com.nosix.cloud.transport.EndpointFactory;
 import com.nosix.cloud.transport.Server;
 import com.nosix.cloud.transport.support.AbstractServerConfiguration;
@@ -15,7 +15,7 @@ public class DefaultService<T> extends AbstractService<T> {
 	
 	public DefaultService(T proxy, URL url, AbstractServerConfiguration configuration) {
 		super( url);
-		endpointFactory = SpiLoader.getInstance(EndpointFactory.class).getExtension(url.getParameter(URLParam.transport.getName()));
+		endpointFactory = ExtentionLoader.getExtensionLoader(EndpointFactory.class).getExtension(url.getParameter(URLParam.transport.getName()));
 		server = endpointFactory.createServer(proxy, url, configuration);
 	}
 

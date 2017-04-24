@@ -13,5 +13,5 @@ public @interface Spi {
 
     String name() default "";
 
-    SpiScope scope() default SpiScope.SINGLETON;
+    Scope scope() default Scope.SINGLETON;
 }

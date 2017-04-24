@@ -3,7 +3,7 @@ package com.nosix.cloud.config;
 import com.nosix.cloud.common.Constants;
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.common.URLParam;
-import com.nosix.cloud.common.extension.SpiLoader;
+import com.nosix.cloud.common.extension.ExtentionLoader;
 import com.nosix.cloud.common.util.NetUtils;
 import com.nosix.cloud.registry.Registry;
 import com.nosix.cloud.registry.RegistryFactory;
@@ -33,7 +33,7 @@ public abstract class AbstractInvokerConfig<T> extends AbstractConfig {
 
     protected Registry getRegistry() {
         URL url = getRegistryURL(registryConfig);
-        RegistryFactory registryFactory = SpiLoader.getInstance(RegistryFactory.class).getExtension(registryConfig.getProtocol());
+        RegistryFactory registryFactory = ExtentionLoader.getExtensionLoader(RegistryFactory.class).getExtension(registryConfig.getProtocol());
         Registry registry = registryFactory.createRegistry(url, getRegistryConfig().getConfig() == null ? new DefaultRegistryConfig(): getRegistryConfig().getConfig());
         if(registry == null) {
             throw new IllegalArgumentException("AbstractInvokerConfig error: registry create fail");

@@ -5,7 +5,7 @@ import com.nosix.cloud.cluster.HaStrategy;
 import com.nosix.cloud.cluster.LoadBalance;
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.common.extension.Spi;
-import com.nosix.cloud.common.extension.SpiScope;
+import com.nosix.cloud.common.extension.Scope;
 import com.nosix.cloud.registry.Registry;
 import com.nosix.cloud.rpc.Protocol;
 import com.nosix.cloud.rpc.Reference;
@@ -21,7 +21,7 @@ import java.util.List;
  * auther:nosix
  * nosix.me@gmail.com
  */
-@Spi(scope = SpiScope.SINGLETON, name = "default")
+@Spi(scope = Scope.SINGLETON, name = "default")
 public class DefaultCluster<T> implements Cluster<T> {
 
     private HaStrategy<T> haStrategy;

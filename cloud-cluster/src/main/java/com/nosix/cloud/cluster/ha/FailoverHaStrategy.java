@@ -3,12 +3,12 @@ package com.nosix.cloud.cluster.ha;
 import com.nosix.cloud.cluster.LoadBalance;
 import com.nosix.cloud.common.URLParam;
 import com.nosix.cloud.common.extension.Spi;
-import com.nosix.cloud.common.extension.SpiScope;
+import com.nosix.cloud.common.extension.Scope;
 import com.nosix.cloud.rpc.Reference;
 import com.nosix.cloud.transport.Request;
 import com.nosix.cloud.transport.Response;
 
-@Spi(name = "failover", scope = SpiScope.PROTOTYPE)
+@Spi(name = "failover", scope = Scope.PROTOTYPE)
 public class FailoverHaStrategy<T> extends AbstractHaStrategy<T> {
 	@Override
 	public Response invoke(Request request, LoadBalance<T> loadBalance) {
