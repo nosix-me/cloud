@@ -2,7 +2,8 @@ package com.nosix.cloud.rpc.filters;
 
 import com.nosix.cloud.common.Constants;
 import com.nosix.cloud.common.StringTools;
-import com.nosix.cloud.common.extension.SpiGroup;
+import com.nosix.cloud.common.extension.Activation;
+import com.nosix.cloud.common.extension.Spi;
 import com.nosix.cloud.rpc.Filter;
 import com.nosix.cloud.rpc.Invoker;
 import com.nosix.cloud.transport.Request;
@@ -14,7 +15,8 @@ import org.slf4j.LoggerFactory;
  * auther:nosix
  * nosix.me@gmail.com
  */
-@SpiGroup(name = "accesslog", group = Constants.CONSUMER, sequence = 10)
+@Spi(name = "accessLog")
+@Activation
 public class AccessLogFilter implements Filter {
 
     private static final Logger logger  = LoggerFactory.getLogger(AccessLogFilter.class);

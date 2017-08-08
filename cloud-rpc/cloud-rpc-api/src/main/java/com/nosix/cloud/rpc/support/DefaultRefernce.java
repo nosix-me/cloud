@@ -2,7 +2,7 @@ package com.nosix.cloud.rpc.support;
 
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.common.URLParam;
-import com.nosix.cloud.common.extension.SpiLoader;
+import com.nosix.cloud.common.extension.ExtentionLoader;
 import com.nosix.cloud.transport.Client;
 import com.nosix.cloud.transport.EndpointFactory;
 import com.nosix.cloud.transport.Request;
@@ -20,7 +20,7 @@ public class DefaultRefernce<T> extends AbstractReference<T> {
 	
 	public DefaultRefernce(Class<T> clz, URL url, AbstractClientConfiguration configuration) {
 		super(clz, url);
-		endpointFactory = SpiLoader.getInstance(EndpointFactory.class).getExtension(url.getParameter(URLParam.transport.getName()));
+		endpointFactory = ExtentionLoader.getExtensionLoader(EndpointFactory.class).getExtension(url.getParameter(URLParam.transport.getName()));
 		client = endpointFactory.createClient(url, configuration);
 	}
 
@@ -52,10 +52,5 @@ public class DefaultRefernce<T> extends AbstractReference<T> {
 	}
 	protected void decrActiveCount() {
 	    activeRefererCount.decrementAndGet();
-	}
-
-	@Override
-	public Integer getActiveCount() {
-		return activeRefererCount.intValue();
 	}
 }

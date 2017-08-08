@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.nosix.cloud.common.extension.Spi;
-import com.nosix.cloud.common.extension.SpiScope;
+import com.nosix.cloud.common.extension.Scope;
 import com.nosix.cloud.rpc.Reference;
 
-@Spi(name = "roundrobin", scope = SpiScope.PROTOTYPE)
+@Spi(name = "roundrobin", scope = Scope.PROTOTYPE)
 public class RoundRobinLoadBalance<T> extends AbstractLoadBalance<T> {
 
 	private AtomicInteger idx = new AtomicInteger(0);

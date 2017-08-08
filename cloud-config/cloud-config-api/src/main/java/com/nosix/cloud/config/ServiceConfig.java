@@ -3,7 +3,7 @@ package com.nosix.cloud.config;
 import com.nosix.cloud.common.Constants;
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.common.URLParam;
-import com.nosix.cloud.common.extension.SpiLoader;
+import com.nosix.cloud.common.extension.ExtentionLoader;
 import com.nosix.cloud.registry.Registry;
 import com.nosix.cloud.rpc.Protocol;
 import com.nosix.cloud.rpc.support.ProtocolFIlterDecorator;
@@ -25,8 +25,8 @@ public class ServiceConfig<T> extends AbstractInvokerConfig<T> {
     private String monitor;
 
     public void service() {
-        final URL serviceUrl = getServiceUURL(getProtocolConfig());
-        final Protocol protocol = SpiLoader.getInstance(Protocol.class).getExtension(serviceUrl.getProtocol());
+        final URL serviceUrl = getServiceURL(getProtocolConfig());
+        final Protocol protocol = ExtentionLoader.getExtensionLoader(Protocol.class).getExtension(serviceUrl.getProtocol());
         protocol.setServerConfiguration(getProtocolConfig().getServerConfig());
         ProtocolFIlterDecorator protocolFIlterDecorator = new ProtocolFIlterDecorator(protocol);
         //start service
@@ -53,7 +53,7 @@ public class ServiceConfig<T> extends AbstractInvokerConfig<T> {
     }
 
     public void unService() {
-        URL serviceUrl = getServiceUURL(getProtocolConfig());
+        URL serviceUrl = getServiceURL(getProtocolConfig());
         Registry registry = getRegistry();
         registry.unRegistry(serviceUrl);
         try {
@@ -65,7 +65,7 @@ public class ServiceConfig<T> extends AbstractInvokerConfig<T> {
     }
 
 
-    private URL getServiceUURL(ProtocolConfig config) {
+    private URL getServiceURL(ProtocolConfig config) {
         if(config == null) {
             throw new IllegalArgumentException("ServiceConfig error: protocol config is null");
         }

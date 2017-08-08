@@ -2,7 +2,7 @@ package com.nosix.cloud.rpc.support;
 
 import com.nosix.cloud.common.Constants;
 import com.nosix.cloud.common.URL;
-import com.nosix.cloud.common.extension.SpiLoader;
+import com.nosix.cloud.common.extension.ExtentionLoader;
 import com.nosix.cloud.rpc.Filter;
 import com.nosix.cloud.rpc.Protocol;
 import com.nosix.cloud.rpc.Reference;
@@ -42,16 +42,12 @@ public class ProtocolFIlterDecorator implements Protocol {
 
     private <T> Reference<T> buildInvokerChain(final Reference<T> reference, String consumer) {
         Reference<T> last = reference;
-        List<Filter> filters = SpiLoader.getInstance(Filter.class).getExtensions(consumer);
+        List<Filter> filters = ExtentionLoader.getExtensionLoader(Filter.class).getExtensions(consumer);
         if(filters.size()>0) {
             for(int i = 0; i < filters.size(); i++) {
                 final Filter filter = filters.get(i);
                 final Reference<T> next = last;
                 last = new Reference<T>() {
-                    @Override
-                    public Integer getActiveCount() {
-                        return reference.getActiveCount();
-                    }
 
                     @Override
                     public Response invoke(Request request) {

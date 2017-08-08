@@ -1,3 +1,2 @@
-com.nosix.cloud.cluster.loadbalance.ActiveCountLoadBalance
 com.nosix.cloud.cluster.loadbalance.RandomLoadBalance
 com.nosix.cloud.cluster.loadbalance.RoundRobinLoadBalance

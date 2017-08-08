@@ -1,12 +1,12 @@
 package com.nosix.cloud.rpc.proxy;
 
 import com.nosix.cloud.common.extension.Spi;
-import com.nosix.cloud.common.extension.SpiScope;
+import com.nosix.cloud.common.extension.Scope;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
-@Spi(scope = SpiScope.PROTOTYPE, name = "jdk")
+@Spi(scope = Scope.PROTOTYPE, name = "jdk")
 public class JdkProxyFactory implements ProxyFactory {
 
 	@SuppressWarnings("unchecked")

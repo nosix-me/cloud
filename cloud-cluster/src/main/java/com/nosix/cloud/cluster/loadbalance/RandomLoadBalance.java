@@ -1,6 +1,5 @@
 package com.nosix.cloud.cluster.loadbalance;
 
-import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,10 +7,10 @@ import java.util.Random;
 
 import com.nosix.cloud.common.URLParam;
 import com.nosix.cloud.common.extension.Spi;
-import com.nosix.cloud.common.extension.SpiScope;
+import com.nosix.cloud.common.extension.Scope;
 import com.nosix.cloud.rpc.Reference;
 
-@Spi(name = "random", scope = SpiScope.PROTOTYPE)
+@Spi(name = "random", scope = Scope.PROTOTYPE)
 public class RandomLoadBalance<T> extends AbstractLoadBalance<T> {
 
 	private Random random = new Random();

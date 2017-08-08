@@ -2,7 +2,7 @@ package com.nosix.cloud.monitor.support;
 
 import com.nosix.cloud.common.URL;
 import com.nosix.cloud.common.URLParam;
-import com.nosix.cloud.common.extension.SpiLoader;
+import com.nosix.cloud.common.extension.ExtentionLoader;
 import com.nosix.cloud.common.util.ExceptionUtil;
 import com.nosix.cloud.monitor.Monitor;
 import com.nosix.cloud.monitor.MonitorFactory;
@@ -25,7 +25,7 @@ public class ServiceProxyHandler implements InvocationHandler {
     public ServiceProxyHandler(Object service, URL url) {
         this.service = service;
         this.url = url;
-        MonitorFactory monitorFactory = SpiLoader.getInstance(MonitorFactory.class).getExtension(url.getParameter(URLParam.monitor.getName()));
+        MonitorFactory monitorFactory = ExtentionLoader.getExtensionLoader(MonitorFactory.class).getExtension(url.getParameter(URLParam.monitor.getName()));
         monitor = monitorFactory.getMonitor(url);
         monitor.start();
     }
